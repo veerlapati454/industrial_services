@@ -1,0 +1,82 @@
+/* WHY US PAGE — builds on styles.css (same colours, fonts, header/footer) */
+:root{--wy-acc:var(--acc,var(--amb,#A5DCD0));--wy-ink:var(--ink,#1B3444);--hh:79px}
+html{scroll-padding-top:110px}
+.nav a[aria-current]{color:var(--wy-acc)}
+.nav a[aria-current]::after{transform:scaleX(1)}
+
+/* Hero */
+.wy-hero{padding:150px var(--pad-x) 84px;background-image:linear-gradient(color-mix(in srgb,var(--wy-acc) 8%,transparent) 1px,transparent 1px),linear-gradient(90deg,color-mix(in srgb,var(--wy-acc) 8%,transparent) 1px,transparent 1px);background-size:56px 56px}
+.wy-hero-in{max-width:900px;margin:0 auto}
+.crumbs{display:flex;gap:10px;font-size:.9rem;margin-bottom:26px;color:rgba(255,255,255,.6)}
+.crumbs a:hover{color:var(--wy-acc)}
+.wy-hero h1{font-size:clamp(2.8rem,7vw,5.2rem);margin-bottom:24px}
+.ln{display:block;overflow:hidden;padding-bottom:.08em}
+.ln>span{display:block;transform:translateY(108%);animation:up .9s var(--ease) forwards}
+.ln:nth-child(2)>span{animation-delay:.14s}
+@keyframes up{to{transform:none}}
+.wy-hero p{max-width:640px;font-size:1.1rem}
+
+/* Stat strip */
+.wy-stats{padding:44px var(--pad-x)}
+.wy-stats-in{max-width:1160px;margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr);gap:24px;text-align:center}
+.wy-stats-in b{display:block;font-family:var(--font-h);font-size:clamp(2rem,4vw,2.8rem);color:var(--wy-ink);line-height:1}
+.wy-stats-in span{font-size:.85rem;opacity:.75}
+
+/* Pinned / stacking reason cards */
+.reasons{position:relative}
+.reason-wrap{height:150vh}
+.reason-wrap:last-child{height:100vh}
+.reason{position:sticky;top:0;height:100vh;display:flex;align-items:center;padding:var(--pad-y) var(--pad-x);box-shadow:0 -30px 60px -20px rgba(0,0,0,.35)}
+.reason-in{max-width:1200px;margin:0 auto;width:100%;display:grid;grid-template-columns:1fr 1.05fr;gap:64px;align-items:center}
+.reason:nth-child(odd) .r-fig{order:0}
+.reason-wrap:nth-child(even) .r-fig{order:2}
+.r-fig{position:relative;aspect-ratio:4/3.2;border-radius:6px;overflow:hidden;clip-path:polygon(0 0,calc(100% - 40px) 0,100% 40px,100% 100%,0 100%);opacity:0;transform:translateY(30px) scale(.96)}
+.r-fig img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.r-fig img.ill{object-fit:contain;padding:16%;background:var(--wy-ink)}
+.r-body{min-width:0;opacity:0;transform:translateY(30px)}
+.reason.in .r-fig,.reason.in .r-body{opacity:1;transform:none;transition:opacity .75s var(--ease),transform .75s var(--ease)}
+.reason.in .r-body{transition-delay:.1s}
+.r-num{display:block;font-family:var(--font-h);font-size:1.1rem;letter-spacing:3px;opacity:.55;margin-bottom:8px}
+.r-body h2{font-size:clamp(1.9rem,3.6vw,3rem);margin-bottom:16px}
+.r-body p{max-width:52ch;margin-bottom:20px}
+.r-body ul{display:grid;gap:10px}
+.r-body ul li{position:relative;padding-left:28px;font-weight:500}
+.r-body ul li::before{content:'\f00c';font-family:'Font Awesome 6 Free';font-weight:900;position:absolute;left:0;top:2px;font-size:.85rem}
+
+/* FAQ accordion */
+.faq{max-width:860px;margin:0 auto}
+.faq-item{border-top:3px solid currentColor}
+.faq-item:last-child{border-bottom:3px solid currentColor}
+.faq-q{width:100%;display:flex;justify-content:space-between;align-items:center;gap:16px;padding:22px 0;background:none;border:0;color:inherit;font-family:var(--font-h);font-size:1.6rem;letter-spacing:.5px;text-transform:uppercase;text-align:left;cursor:pointer}
+.faq-q i{flex-shrink:0;transition:transform .35s var(--ease)}
+.faq-item.open .faq-q i{transform:rotate(135deg)}
+.faq-a{display:grid;grid-template-rows:0fr;transition:grid-template-rows .4s var(--ease)}
+.faq-a>div{overflow:hidden}
+.faq-a p{padding:0 0 24px;max-width:62ch}
+.faq-item.open .faq-a{grid-template-rows:1fr}
+
+@media(max-width:1000px){
+  .reason-in{grid-template-columns:1fr;gap:32px}
+  .r-fig{max-width:520px;margin:0 auto;width:100%}
+}
+@media(max-width:800px){
+  /* Pinning gets janky on short mobile viewports — fall back to a normal stacked layout */
+  .reason-wrap,.reason-wrap:last-child{height:auto}
+  .reason{position:relative;top:auto;height:auto;padding:64px var(--pad-x);box-shadow:none}
+  .r-fig,.r-body{opacity:1;transform:none}
+  .wy-stats-in{grid-template-columns:repeat(2,1fr);gap:28px 20px}
+}
+@media(max-width:640px){
+  .wy-hero{padding:112px var(--pad-x) 56px;text-align:center}
+  .crumbs{justify-content:center}
+  .wy-hero p{margin:0 auto}
+  .r-body{text-align:center}
+  .r-body ul{justify-items:center}
+  .r-body ul li{padding-left:0}
+  .r-body ul li::before{display:none}
+  .faq-q{font-size:1.3rem;padding:18px 0}
+}
+@media(prefers-reduced-motion:reduce){
+  .ln>span{animation:none;transform:none}
+  .r-fig,.r-body{opacity:1;transform:none;transition:none}
+}

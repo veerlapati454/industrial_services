@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="theme-color" content="#1B3444">
+  <title>Login | Stackly Industrial Services</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="../css/login.css">
+</head>
+<body>
+<main class="lg">
+
+  <!-- LEFT: brand / blueprint panel -->
+  <aside class="lg-brand" id="brandPanel">
+    <div class="gears" aria-hidden="true">
+      <svg class="gear g1" viewBox="0 0 200 200"><circle cx="100" cy="100" r="78" stroke-dasharray="14 9.5"/><circle cx="100" cy="100" r="60" class="thin"/><circle cx="100" cy="100" r="18" class="thin"/></svg>
+      <svg class="gear g2" viewBox="0 0 200 200"><circle cx="100" cy="100" r="78" stroke-dasharray="14 9.5"/><circle cx="100" cy="100" r="60" class="thin"/><circle cx="100" cy="100" r="18" class="thin"/></svg>
+    </div>
+
+    <a href="../index.html" class="lg-logo"><img src="../assets/logo1.webp" alt="Stackly Industrial Services"></a>
+
+    <div class="lg-brand-body">
+      <span class="tag"><i class="fa-solid fa-screwdriver-wrench"></i> Client portal</span>
+      <h1><span class="ln"><span>Keep your plant</span></span><span class="ln"><span>running. On record.</span></span></h1>
+      <p>Sign in to track service requests, review quotes and reports, and raise a breakdown call in seconds.</p>
+
+      <ul class="perks">
+        <li><i class="fa-solid fa-clipboard-check"></i>Live status on every job</li>
+        <li><i class="fa-solid fa-file-invoice"></i>Quotes and reports in one place</li>
+        <li><i class="fa-solid fa-bolt"></i>Raise emergency call-outs fast</li>
+      </ul>
+    </div>
+
+    <div class="lg-stats">
+      <div><b>24/7</b><span>Emergency call-outs</span></div>
+      <div><b>Same day</b><span>Engineer callback</span></div>
+    </div>
+    <div class="hazard" aria-hidden="true"></div>
+  </aside>
+
+  <!-- RIGHT: form -->
+  <section class="lg-form-wrap">
+    <div class="lg-card">
+      <a href="../index.html" class="back"><i class="fa-solid fa-arrow-left"></i> Back to Home</a>
+
+      <span class="eyebrow">Secure sign in</span>
+      <h2>Welcome back</h2>
+      <p class="sub">Enter your details to access your account.</p>
+
+      <form id="loginForm" novalidate>
+
+        <fieldset class="role">
+          <legend>Login as</legend>
+          <div class="seg">
+            <label><input type="radio" name="role" value="user" checked><span><i class="fa-solid fa-user"></i> User</span></label>
+            <label><input type="radio" name="role" value="admin"><span><i class="fa-solid fa-user-shield"></i> Admin</span></label>
+            <i class="thumb" aria-hidden="true"></i>
+          </div>
+        </fieldset>
+
+        <div class="field">
+          <i class="fa-solid fa-envelope lead"></i>
+          <input type="email" id="email" name="email" placeholder=" " autocomplete="email" required>
+          <label for="email">Email address</label>
+          <small class="hint" data-for="email">Only @gmail.com addresses are accepted.</small>
+        </div>
+
+        <div class="field">
+          <i class="fa-solid fa-lock lead"></i>
+          <input type="password" id="password" name="password" placeholder=" " autocomplete="current-password" required>
+          <label for="password">Password</label>
+          <button type="button" class="eye" aria-label="Show password"><i class="fa-solid fa-eye"></i></button>
+          <small class="hint" data-for="password">Minimum 6 characters.</small>
+          <small class="caps" id="capsWarn" hidden><i class="fa-solid fa-triangle-exclamation"></i> Caps Lock is on</small>
+        </div>
+
+        <div class="row">
+          <label class="remember"><input type="checkbox" id="rememberMe" name="rememberMe"><span>Remember me</span></label>
+          <a href="./404.html" class="forgot">Forgot password?</a>
+        </div>
+
+        <button type="submit" class="btn" id="loginBtn">
+          <span class="lbl">Sign in <i class="fa-solid fa-arrow-right"></i></span>
+          <span class="spin" aria-hidden="true"></span>
+        </button>
+
+        <p class="signup">New here? <a href="./signup.html">Create an account</a></p>
+      </form>
+
+      <p class="secure"><i class="fa-solid fa-shield-halved"></i> Protected access for Stackly clients and staff</p>
+    </div>
+  </section>
+
+</main>
+<script src="../js/login.js"></script>
+</body>
+</html>

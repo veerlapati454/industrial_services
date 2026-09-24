@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Page not found | Stackly Industrial Services</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/styles.css">
+  <style>
+    .nf{min-height:100vh;min-height:100svh;display:grid;place-items:center;text-align:center;padding:40px 24px;
+      background-image:linear-gradient(rgba(255,198,26,.07) 1px,transparent 1px),linear-gradient(90deg,rgba(255,198,26,.07) 1px,transparent 1px);background-size:56px 56px}
+    .nf .logo-img{margin:0 auto 30px;height:60px}
+    .nf h1{font-size:clamp(7rem,32vw,13rem);color:var(--amb);line-height:.85}
+    .nf h2{font-size:clamp(1.8rem,6vw,3rem);margin:12px 0 10px}
+    .nf p{max-width:460px;margin:0 auto 30px}
+    .nf .btns{justify-content:center}
+    .nf .hazard{width:min(360px,80%);margin:0 auto 28px}
+  </style>
+</head>
+<body>
+  <main class="nf on-ink">
+    <div>
+      <a href="../index.html"><img src="../assets/logo1.webp" alt="Stackly Industrial Services" class="logo-img"></a>
+      <h1>404</h1>
+      <div class="hazard"></div>
+      <h2>This page is not available</h2>
+      <p>The page you are looking for has moved or is not built yet. Go back to where you were or return to the homepage.</p>
+      <div class="btns">
+        <button type="button" class="btn btn-line" id="goBack">Go back</button>
+        <a href="../index.html" class="btn btn-amb">Go home</a>
+      </div>
+    </div>
+  </main>
+  <script>
+    // One step back in history; if this page was opened directly, fall back to home
+    document.getElementById('goBack').addEventListener('click', function () {
+      if (window.history.length > 1) window.history.back();
+      else window.location.href = '../index.html';
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,156 @@
+/* STACKLY INDUSTRIAL — signup.css (standalone, matches login.css) */
+:root{
+  --ink:#1B3444; --ink-2:#132633; --acc:#A5DCD0; --amber:#F2B632;
+  --bad:#e5484d; --ok:#2fae66; --bg:#EEF3F4; --line:rgba(27,52,68,.22);
+  --font-h:'Barlow Condensed',sans-serif; --font-b:'IBM Plex Sans',system-ui,sans-serif;
+  --ease:cubic-bezier(.2,.8,.2,1);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{min-height:100%}
+body{font-family:var(--font-b);color:var(--ink);background:var(--bg);-webkit-font-smoothing:antialiased}
+a{color:inherit}
+button{font:inherit}
+
+.lg{display:grid;grid-template-columns:1fr 1fr;min-height:100vh;min-height:100dvh;align-items:start}
+
+/* ================= Brand panel (sticky) ================= */
+.lg-brand{position:sticky;top:0;height:100vh;height:100dvh;overflow:hidden;display:flex;flex-direction:column;justify-content:space-between;gap:28px;padding:38px 56px 0;color:#fff;background:linear-gradient(160deg,var(--ink) 0%,var(--ink-2) 100%)}
+.lg-brand::before{content:"";position:absolute;inset:-56px;background-image:linear-gradient(rgba(165,220,208,.09) 1px,transparent 1px),linear-gradient(90deg,rgba(165,220,208,.09) 1px,transparent 1px);background-size:56px 56px;animation:grid 14s linear infinite}
+.lg-brand::after{content:"";position:absolute;width:520px;height:520px;right:-180px;top:-140px;border-radius:50%;background:radial-gradient(circle,rgba(165,220,208,.22),transparent 65%);pointer-events:none}
+@keyframes grid{to{transform:translate(56px,56px)}}
+.lg-brand>*{position:relative;z-index:1}
+.lg-logo img{height:54px;width:auto;display:block}
+
+.gears{position:absolute!important;inset:0;z-index:0!important;pointer-events:none;transition:transform .3s ease-out}
+.gear{position:absolute;fill:none;stroke:rgba(165,220,208,.2);stroke-width:18}
+.gear .thin{stroke-width:1.5;stroke:rgba(165,220,208,.28);stroke-dasharray:none}
+.g1{width:380px;right:-90px;bottom:120px;animation:spin 46s linear infinite}
+.g2{width:220px;right:230px;bottom:-30px;animation:spin 27s linear infinite reverse}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+.lg-brand-body{max-width:520px}
+.tag{display:inline-flex;align-items:center;gap:8px;padding:6px 14px;border-radius:999px;font-size:.78rem;letter-spacing:.8px;text-transform:uppercase;font-weight:600;color:var(--acc);border:1px solid rgba(165,220,208,.35);background:rgba(165,220,208,.08);margin-bottom:22px}
+.lg-brand h1{font-family:var(--font-h);font-weight:700;font-size:clamp(2.6rem,4.6vw,4.2rem);line-height:1;letter-spacing:.5px;text-transform:uppercase;margin-bottom:20px}
+.ln{display:block;overflow:hidden;padding-bottom:.08em}
+.ln>span{display:block;transform:translateY(108%);animation:up .9s var(--ease) .1s forwards}
+.ln:nth-child(2)>span{animation-delay:.24s;color:var(--acc)}
+@keyframes up{to{transform:none}}
+.lg-brand p{color:rgba(255,255,255,.75);line-height:1.6;max-width:440px;margin-bottom:28px;opacity:0;animation:fade .8s .5s forwards}
+@keyframes fade{to{opacity:1}}
+
+/* Steps with connecting line */
+.steps{list-style:none;display:grid;gap:22px;position:relative}
+.steps::before{content:"";position:absolute;left:18px;top:20px;bottom:20px;width:2px;background:linear-gradient(var(--acc),rgba(165,220,208,.1));opacity:.5}
+.steps li{position:relative;display:flex;gap:16px;align-items:flex-start;opacity:0;transform:translateX(-14px);animation:slide .7s var(--ease) forwards}
+.steps li:nth-child(1){animation-delay:.65s}.steps li:nth-child(2){animation-delay:.8s}.steps li:nth-child(3){animation-delay:.95s}
+@keyframes slide{to{opacity:1;transform:none}}
+.steps i{font-style:normal;flex:0 0 auto;width:38px;height:38px;display:grid;place-items:center;border-radius:50%;font-family:var(--font-h);font-size:1.2rem;font-weight:700;color:var(--acc);background:var(--ink);border:2px solid rgba(165,220,208,.5);transition:background .25s,color .25s}
+.steps li:hover i{background:var(--acc);color:var(--ink)}
+.steps b{display:block;font-weight:600;margin-top:2px}
+.steps span{font-size:.88rem;opacity:.7}
+
+.lg-stats{display:flex;gap:44px;padding-top:22px;border-top:1px solid rgba(255,255,255,.14)}
+.lg-stats b{display:block;font-family:var(--font-h);font-size:1.9rem;letter-spacing:.5px;color:var(--acc);line-height:1.1}
+.lg-stats span{font-size:.82rem;opacity:.7}
+.hazard{height:12px;margin:0 -56px;background:repeating-linear-gradient(-45deg,var(--amber) 0 14px,var(--ink-2) 14px 28px);background-size:39.6px 100%;animation:haz 2.4s linear infinite}
+@keyframes haz{to{background-position:39.6px 0}}
+
+/* ================= Form side ================= */
+.lg-form-wrap{display:flex;justify-content:center;padding:40px 28px 56px;min-height:100vh;background-image:linear-gradient(rgba(27,52,68,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(27,52,68,.05) 1px,transparent 1px);background-size:44px 44px}
+.lg-card{position:relative;width:100%;max-width:520px;height:fit-content;align-self:center;padding:36px 36px 28px;background:#fff;border-radius:12px;border:1px solid var(--line);box-shadow:0 24px 60px -24px rgba(27,52,68,.35);overflow:hidden;animation:card .8s var(--ease) both}
+.lg-card::before{content:"";position:absolute;left:0;right:0;top:0;height:4px;background:linear-gradient(90deg,var(--ink),var(--acc),var(--ink));background-size:200% 100%;animation:bar 5s linear infinite}
+@keyframes bar{to{background-position:200% 0}}
+@keyframes card{from{opacity:0;transform:translateY(24px) scale(.98)}to{opacity:1;transform:none}}
+
+.back{display:inline-flex;align-items:center;gap:8px;font-size:.85rem;font-weight:500;text-decoration:none;opacity:.7;margin-bottom:20px;transition:opacity .2s,gap .2s}
+.back:hover{opacity:1;gap:12px}
+.eyebrow{display:block;font-size:.75rem;letter-spacing:1.6px;text-transform:uppercase;font-weight:600;color:#3f8f80;margin-bottom:6px}
+.lg-card h2{font-family:var(--font-h);font-size:2.4rem;text-transform:uppercase;letter-spacing:.5px;line-height:1.05}
+.sub{opacity:.7;font-size:.95rem;margin:6px 0 24px}
+
+/* Staggered field entrance */
+#signupForm>*{opacity:0;transform:translateY(12px);animation:rise .6s var(--ease) forwards}
+#signupForm>*:nth-child(1){animation-delay:.15s}#signupForm>*:nth-child(2){animation-delay:.22s}#signupForm>*:nth-child(3){animation-delay:.29s}#signupForm>*:nth-child(4){animation-delay:.36s}#signupForm>*:nth-child(5){animation-delay:.43s}#signupForm>*:nth-child(6){animation-delay:.5s}#signupForm>*:nth-child(7){animation-delay:.57s}
+@keyframes rise{to{opacity:1;transform:none}}
+
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+
+/* Floating-label fields */
+.field{position:relative;margin-bottom:18px}
+.field input{width:100%;padding:24px 44px 9px 42px;border:1.5px solid var(--line);border-radius:8px;background:#fff;color:var(--ink);font:inherit;font-size:.98rem;transition:border-color .2s,box-shadow .2s}
+.field input:focus{outline:none;border-color:var(--ink);box-shadow:0 0 0 4px rgba(165,220,208,.45)}
+.field label{position:absolute;left:42px;top:17px;font-size:.98rem;opacity:.55;pointer-events:none;transition:top .2s,font-size .2s,opacity .2s}
+.field input:focus+label,.field input:not(:placeholder-shown)+label{top:7px;font-size:.7rem;opacity:.85}
+.lead{position:absolute;left:15px;top:20px;font-size:.92rem;opacity:.45;transition:color .2s,opacity .2s}
+.field:focus-within .lead{opacity:1;color:var(--ink)}
+.eye{position:absolute;right:6px;top:8px;width:38px;height:38px;border:0;background:none;color:inherit;opacity:.5;cursor:pointer;border-radius:6px;transition:opacity .2s}
+.eye:hover{opacity:1}
+.hint{display:block;margin-top:6px;font-size:.76rem;opacity:.6;line-height:1.4}
+.field.invalid input{border-color:var(--bad)}
+.field.invalid .hint{color:var(--bad);opacity:1;font-weight:500}
+.field.valid input{border-color:var(--ok)}
+.field.valid .lead{color:var(--ok);opacity:1}
+.shake{animation:shk .35s}
+@keyframes shk{20%,60%{transform:translateX(-6px)}40%,80%{transform:translateX(6px)}}
+
+/* Password strength meter */
+.meter{display:flex;align-items:center;gap:5px;margin-top:8px;height:6px}
+.meter i{flex:1;height:5px;border-radius:3px;background:rgba(27,52,68,.12);transition:background .3s}
+.meter em{font-style:normal;font-size:.72rem;font-weight:600;margin-left:8px;min-width:48px;line-height:1}
+.meter[data-s="1"] i:nth-child(-n+1){background:var(--bad)}
+.meter[data-s="2"] i:nth-child(-n+2){background:var(--amber)}
+.meter[data-s="3"] i:nth-child(-n+3){background:#7bc47f}
+.meter[data-s="4"] i{background:var(--ok)}
+
+/* Terms */
+.terms-wrap{margin:2px 0 22px}
+.terms{display:flex;align-items:flex-start;gap:10px;font-size:.9rem;cursor:pointer}
+.terms input{width:16px;height:16px;margin-top:3px;accent-color:var(--ink);flex:0 0 auto}
+.terms a{font-weight:600;text-underline-offset:3px}
+.terms-wrap.invalid .hint{color:var(--bad);opacity:1;font-weight:500}
+.terms-wrap .hint{display:none}
+.terms-wrap.invalid .hint{display:block}
+
+/* Submit button */
+.btn{position:relative;width:100%;display:flex;align-items:center;justify-content:center;gap:10px;padding:16px;border:0;border-radius:8px;overflow:hidden;cursor:pointer;background:var(--ink);color:#fff;font-family:var(--font-h);font-size:1.15rem;letter-spacing:1.4px;text-transform:uppercase;font-weight:700;transition:transform .2s,box-shadow .25s,background .3s}
+.btn::before{content:"";position:absolute;top:0;bottom:0;left:-60%;width:40%;background:linear-gradient(100deg,transparent,rgba(165,220,208,.55),transparent);transform:skewX(-20deg)}
+.btn:hover{transform:translateY(-2px);box-shadow:0 14px 28px -10px rgba(27,52,68,.6)}
+.btn:hover::before{animation:shine .8s}
+.btn:active{transform:none}
+.btn:focus-visible{outline:3px solid var(--acc);outline-offset:3px}
+.btn .lbl{display:inline-flex;align-items:center;gap:10px;transition:gap .25s}
+.btn:hover .lbl{gap:16px}
+@keyframes shine{to{left:130%}}
+.btn .spin,.btn .done{display:none}
+.btn .spin{width:18px;height:18px;border:2px solid rgba(255,255,255,.35);border-top-color:#fff;border-radius:50%;animation:sp .7s linear infinite}
+.btn.loading .lbl{display:none}.btn.loading .spin{display:inline-block}
+.btn.success{background:var(--ok)}
+.btn.success .lbl,.btn.success .spin{display:none}
+.btn.success .done{display:inline-flex;align-items:center;gap:10px}
+.btn:disabled{cursor:progress}
+@keyframes sp{to{transform:rotate(360deg)}}
+
+.signup{text-align:center;margin-top:18px;font-size:.92rem;opacity:.85}
+.signup a{font-weight:700;text-underline-offset:3px}
+.secure{display:flex;justify-content:center;gap:8px;align-items:center;margin-top:20px;padding-top:16px;border-top:1px solid var(--line);font-size:.76rem;opacity:.6}
+
+/* ================= Responsive ================= */
+@media(max-width:980px){
+  .lg{grid-template-columns:1fr}
+  .lg-brand{position:relative;height:auto;padding:26px 24px 0;gap:20px}
+  .lg-brand-body p,.steps,.lg-stats,.g2{display:none}
+  .lg-brand h1{font-size:clamp(2.1rem,9vw,3rem);margin-bottom:8px}
+  .lg-brand-body .tag{margin-bottom:14px}
+  .hazard{margin:0 -24px}
+  .g1{width:240px;right:-70px;bottom:-40px}
+  .lg-form-wrap{padding:28px 16px 40px;min-height:auto}
+}
+@media(max-width:560px){
+  .row2{grid-template-columns:1fr;gap:0}
+  .lg-card{padding:30px 22px 24px}
+  .lg-card h2{font-size:2rem}
+}
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none!important;transition:none!important}
+  .ln>span,.lg-brand p,.steps li,#signupForm>*{opacity:1;transform:none}
+}

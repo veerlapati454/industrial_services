@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="theme-color" content="#1B3444">
+  <title>Sign Up | Stackly Industrial Services</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="../css/signup.css">
+</head>
+<body>
+<main class="lg">
+
+  <!-- LEFT: brand panel (stays in view while the form scrolls) -->
+  <aside class="lg-brand" id="brandPanel">
+    <div class="gears" aria-hidden="true">
+      <svg class="gear g1" viewBox="0 0 200 200"><circle cx="100" cy="100" r="78" stroke-dasharray="14 9.5"/><circle cx="100" cy="100" r="60" class="thin"/><circle cx="100" cy="100" r="18" class="thin"/></svg>
+      <svg class="gear g2" viewBox="0 0 200 200"><circle cx="100" cy="100" r="78" stroke-dasharray="14 9.5"/><circle cx="100" cy="100" r="60" class="thin"/><circle cx="100" cy="100" r="18" class="thin"/></svg>
+    </div>
+
+    <a href="../index.html" class="lg-logo"><img src="../assets/logo1.webp" alt="Stackly Industrial Services"></a>
+
+    <div class="lg-brand-body">
+      <span class="tag"><i class="fa-solid fa-user-plus"></i> New account</span>
+      <h1><span class="ln"><span>Set up your</span></span><span class="ln"><span>plant account.</span></span></h1>
+      <p>One account for quotes, service requests and reports. Setup takes under a minute.</p>
+
+      <ol class="steps">
+        <li><i>1</i><div><b>Create your account</b><span>Add your details and choose a password.</span></div></li>
+        <li><i>2</i><div><b>Request a quote</b><span>Tell us about the job and your site.</span></div></li>
+        <li><i>3</i><div><b>Track every job</b><span>Follow progress from visit to handover.</span></div></li>
+      </ol>
+    </div>
+
+    <div class="lg-stats">
+      <div><b>24/7</b><span>Emergency call-outs</span></div>
+      <div><b>Same day</b><span>Engineer callback</span></div>
+    </div>
+    <div class="hazard" aria-hidden="true"></div>
+  </aside>
+
+  <!-- RIGHT: form -->
+  <section class="lg-form-wrap">
+    <div class="lg-card">
+      <a href="./login.html" class="back"><i class="fa-solid fa-arrow-left"></i> Back to login</a>
+
+      <span class="eyebrow">Get started</span>
+      <h2>Create account</h2>
+      <p class="sub">Fill in the details below to join the Stackly client portal.</p>
+
+      <form id="signupForm" novalidate>
+
+        <div class="row2">
+          <div class="field">
+            <i class="fa-solid fa-at lead"></i>
+            <input type="text" id="username" name="username" placeholder=" " autocomplete="username" maxlength="24" spellcheck="false" required>
+            <label for="username">Username</label>
+            <small class="hint" data-for="username">Letters only, no spaces.</small>
+          </div>
+          <div class="field">
+            <i class="fa-solid fa-user lead"></i>
+            <input type="text" id="fullName" name="fullName" placeholder=" " autocomplete="name" maxlength="48" spellcheck="false" required>
+            <label for="fullName">Full name</label>
+            <small class="hint" data-for="fullName">Letters and spaces only.</small>
+          </div>
+        </div>
+
+        <div class="field">
+          <i class="fa-solid fa-envelope lead"></i>
+          <input type="email" id="email" name="email" placeholder=" " autocomplete="email" required>
+          <label for="email">Email address</label>
+          <small class="hint" data-for="email">Only @gmail.com addresses are accepted.</small>
+        </div>
+
+        <div class="field">
+          <i class="fa-solid fa-lock lead"></i>
+          <input type="password" id="password" name="password" placeholder=" " autocomplete="new-password" required>
+          <label for="password">Password</label>
+          <button type="button" class="eye" data-target="password" aria-label="Show password"><i class="fa-solid fa-eye"></i></button>
+          <div class="meter" id="meter" aria-hidden="true"><i></i><i></i><i></i><i></i><em id="meterText"></em></div>
+          <small class="hint" data-for="password">At least 6 characters. Mix letters, numbers and symbols for a stronger password.</small>
+        </div>
+
+        <div class="field">
+          <i class="fa-solid fa-shield-halved lead"></i>
+          <input type="password" id="confirmPassword" name="confirmPassword" placeholder=" " autocomplete="new-password" required>
+          <label for="confirmPassword">Confirm password</label>
+          <button type="button" class="eye" data-target="confirmPassword" aria-label="Show password"><i class="fa-solid fa-eye"></i></button>
+          <small class="hint" data-for="confirmPassword">Re-enter your password.</small>
+        </div>
+
+        <div class="terms-wrap field-plain">
+          <label class="terms">
+            <input type="checkbox" id="agreeTerms" name="agreeTerms" required>
+            <span>I agree to the <a href="./404.html">Terms and Conditions</a></span>
+          </label>
+          <small class="hint" data-for="agreeTerms">You must accept the Terms and Conditions to sign up.</small>
+        </div>
+
+        <button type="submit" class="btn" id="signupBtn">
+          <span class="lbl">Create account <i class="fa-solid fa-arrow-right"></i></span>
+          <span class="spin" aria-hidden="true"></span>
+          <span class="done"><i class="fa-solid fa-circle-check"></i> Account created</span>
+        </button>
+
+        <p class="signup">Already have an account? <a href="./login.html">Sign in</a></p>
+      </form>
+
+      <p class="secure"><i class="fa-solid fa-shield-halved"></i> Your details are used only for your Stackly account</p>
+    </div>
+  </section>
+
+</main>
+<script src="../js/signup.js"></script>
+</body>
+</html>

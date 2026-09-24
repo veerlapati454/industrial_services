@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="theme-color" content="#1B3444">
+  <title>My Account | Stackly Industrial Services</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+/* STACKLY INDUSTRIAL — user-dashboard.css */
+:root{
+  --ink:#1B3444; --ink-2:#132633; --acc:#A5DCD0; --amber:#F2B632;
+  --bg:#EEF3F4; --card:#fff; --line:rgba(27,52,68,.14); --muted:rgba(27,52,68,.66);
+  --ok:#2fae66; --bad:#e5484d; --teal:#3f8f80;
+  --font-h:'Barlow Condensed',sans-serif; --font-b:'IBM Plex Sans',system-ui,sans-serif;
+  --ease:cubic-bezier(.2,.8,.2,1); --sw:264px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{max-width:100%;overflow-x:hidden}
+img{max-width:100%}
+.card,.item,.list li,.feed li,.hero,.stat{overflow-wrap:anywhere}
+body{font-family:var(--font-b);background:var(--bg);color:var(--ink);-webkit-font-smoothing:antialiased}
+button{font:inherit;color:inherit;cursor:pointer;background:none;border:0}
+a{color:inherit}
+ul{list-style:none}
+.app{display:flex;min-height:100vh}
+
+/* ---------- Sidebar ---------- */
+.side{position:fixed;inset:0 auto 0 0;width:min(var(--sw),86vw);z-index:50;display:flex;flex-direction:column;padding:22px 16px 16px;overflow-y:auto;color:#fff;background:linear-gradient(170deg,var(--ink),var(--ink-2))}
+.side-head{position:relative;display:flex;align-items:center;justify-content:center;margin-bottom:16px}
+.brand{display:flex;justify-content:center;align-items:center;width:100%}.brand img{height:46px;max-width:100%;width:auto;display:block;margin:0 auto}
+.x{display:none;position:absolute;right:0;top:50%;transform:translateY(-50%);width:34px;height:34px;color:rgba(255,255,255,.7);font-size:1.1rem}
+.badge-strip{display:flex;align-items:center;justify-content:center;gap:8px;padding:8px;margin-bottom:8px;border-radius:6px;font-size:.72rem;letter-spacing:1.2px;text-transform:uppercase;font-weight:600;color:var(--acc);background:rgba(165,220,208,.1);border:1px solid rgba(165,220,208,.25)}
+.badge-strip i{width:6px;height:6px;border-radius:50%;background:var(--acc);animation:blink 2s ease-in-out infinite}
+@keyframes blink{50%{opacity:.35}}
+.grp{font-size:.7rem;letter-spacing:1.4px;text-transform:uppercase;color:rgba(255,255,255,.4);margin:16px 8px 6px}
+.nav{display:grid;gap:2px}
+.nav button{display:flex;align-items:center;gap:12px;width:100%;padding:10px 12px;border-radius:8px;text-align:left;font-size:.9rem;font-weight:500;color:rgba(255,255,255,.72);transition:background .2s,color .2s,transform .2s}
+.nav button i{width:18px;text-align:center;font-size:.9rem}
+.nav button:hover{background:rgba(165,220,208,.1);color:#fff;transform:translateX(3px)}
+.nav button.on{background:var(--acc);color:var(--ink);font-weight:600}
+.nav .n{margin-left:auto;font-size:.7rem;font-weight:700;padding:1px 8px;border-radius:999px;background:var(--amber);color:var(--ink)}
+.side-cta{display:flex;align-items:center;justify-content:center;gap:8px;margin:18px 0 0;padding:12px;border-radius:8px;text-decoration:none;font-family:var(--font-h);font-size:1.05rem;letter-spacing:1px;text-transform:uppercase;font-weight:700;background:var(--amber);color:var(--ink);transition:transform .2s,box-shadow .2s}
+.side-cta:hover{transform:translateY(-2px);box-shadow:0 10px 20px -8px rgba(242,182,50,.6)}
+.side-user{display:flex;align-items:center;gap:10px;margin-top:auto;padding:10px;border-radius:8px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1)}
+.side-user{margin-top:22px}
+.side-user div{min-width:0}
+.side-user b{display:block;font-size:.85rem;text-transform:capitalize;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.side-user small{display:block;font-size:.72rem;opacity:.55;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.av{flex:0 0 auto;width:34px;height:34px;border-radius:50%;display:grid;place-items:center;font-family:var(--font-h);font-size:1.1rem;font-weight:700;text-transform:uppercase;background:var(--acc);color:var(--ink)}
+.logout{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;margin-top:8px;padding:10px;border-radius:8px;font-size:.82rem;font-weight:600;text-transform:uppercase;letter-spacing:.8px;color:#ff8d90;background:rgba(229,72,77,.12);border:1px solid rgba(229,72,77,.3);transition:background .2s}
+.logout:hover{background:rgba(229,72,77,.22)}
+.overlay{position:fixed;inset:0;z-index:40;background:rgba(10,20,28,.6);backdrop-filter:blur(3px);opacity:0;visibility:hidden;transition:opacity .25s}
+.overlay.show{opacity:1;visibility:visible}
+
+/* ---------- Topbar ---------- */
+.main{flex:1;min-width:0;margin-left:var(--sw)}
+.top{position:sticky;top:0;z-index:30;display:flex;align-items:center;gap:14px;padding:12px 28px;min-height:64px;background:rgba(238,243,244,.9);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.top h1{min-width:0;overflow:hidden;text-overflow:ellipsis;font-family:var(--font-h);font-size:1.9rem;text-transform:uppercase;letter-spacing:.5px;font-weight:700;white-space:nowrap}
+.burger{display:none;width:38px;height:38px;border-radius:8px;background:#fff;border:1px solid var(--line)}
+.top-r{margin-left:auto;display:flex;align-items:center;gap:10px}
+.call{display:flex;align-items:center;gap:8px;padding:8px 14px;border-radius:999px;text-decoration:none;font-size:.82rem;font-weight:600;color:#fff;background:var(--ink);transition:background .2s}
+.call:hover{background:var(--teal)}
+.ib{position:relative;width:38px;height:38px;border-radius:8px;background:#fff;border:1px solid var(--line);transition:border-color .2s,transform .2s}
+.ib:hover{border-color:var(--ink);transform:translateY(-1px)}
+.ib em{position:absolute;top:8px;right:9px;width:8px;height:8px;border-radius:50%;background:var(--amber);border:2px solid #fff;animation:ping 2.2s infinite}
+@keyframes ping{0%{box-shadow:0 0 0 0 rgba(242,182,50,.6)}70%,100%{box-shadow:0 0 0 7px rgba(242,182,50,0)}}
+.user{position:relative}
+.user-btn{display:flex;align-items:center;gap:8px;padding:3px 12px 3px 3px;border-radius:999px;background:#fff;border:1px solid var(--line);font-size:.82rem;font-weight:500}
+.user-btn .av{width:30px;height:30px;font-size:1rem;background:var(--ink);color:var(--acc)}
+.user-btn>i{font-size:.65rem;opacity:.5}
+.uname{max-width:110px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;text-transform:capitalize}
+.menu{position:absolute;right:0;top:calc(100% + 8px);width:230px;padding:8px;border-radius:10px;background:#fff;border:1px solid var(--line);box-shadow:0 20px 40px -12px rgba(27,52,68,.35);opacity:0;visibility:hidden;transform:translateY(-6px);transition:.2s var(--ease)}
+.user.open .menu{opacity:1;visibility:visible;transform:none}
+.menu-mail{padding:8px 10px 10px;border-bottom:1px solid var(--line);margin-bottom:6px}
+.menu-mail small{display:block;font-size:.68rem;text-transform:uppercase;letter-spacing:1px;opacity:.55}
+.menu-mail b{font-size:.82rem;word-break:break-all}
+.menu button{display:flex;align-items:center;gap:10px;width:100%;padding:9px 10px;border-radius:6px;font-size:.85rem;text-align:left;transition:background .15s}
+.menu button:hover{background:rgba(165,220,208,.3)}
+.menu .danger{color:var(--bad)}.menu .danger:hover{background:rgba(229,72,77,.1)}
+
+/* ---------- Content ---------- */
+.content{padding:26px 28px 56px;max-width:1400px;margin:0 auto}
+.rise{opacity:0;transform:translateY(14px);animation:rise .55s var(--ease) forwards;animation-delay:calc(var(--i,0)*70ms)}
+@keyframes rise{to{opacity:1;transform:none}}
+
+.hero{position:relative;overflow:hidden;display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap;padding:28px 32px;margin-bottom:20px;border-radius:14px;color:#fff;background:linear-gradient(135deg,var(--ink),var(--ink-2))}
+.hero::before{content:"";position:absolute;inset:0;background-image:linear-gradient(rgba(165,220,208,.08) 1px,transparent 1px),linear-gradient(90deg,rgba(165,220,208,.08) 1px,transparent 1px);background-size:44px 44px}
+.hero::after{content:"";position:absolute;left:0;right:0;bottom:0;height:8px;background:repeating-linear-gradient(-45deg,var(--amber) 0 12px,var(--ink-2) 12px 24px)}
+.hero>*{position:relative;z-index:1}
+.eyebrow{font-size:.74rem;letter-spacing:1.6px;text-transform:uppercase;font-weight:600;color:var(--acc);margin-bottom:6px}
+.hero h2{font-family:var(--font-h);font-size:2.3rem;text-transform:uppercase;letter-spacing:.5px;line-height:1.05;margin-bottom:8px}
+.hero p{max-width:520px;opacity:.75;line-height:1.55;font-size:.95rem}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:10px 18px;border-radius:8px;text-decoration:none;font-family:var(--font-h);font-size:1rem;letter-spacing:1px;text-transform:uppercase;font-weight:700;border:1.5px solid var(--ink);background:var(--ink);color:#fff;transition:transform .2s,box-shadow .2s,background .2s}
+.btn:hover{transform:translateY(-2px);box-shadow:0 10px 20px -10px rgba(27,52,68,.6)}
+.btn.amb{background:var(--amber);border-color:var(--amber);color:var(--ink)}
+.btn.ghost{background:transparent;color:var(--ink)}
+.btn.sm{padding:6px 12px;font-size:.88rem}
+
+.stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px;margin-bottom:20px}
+.stat{padding:18px;border-radius:12px;background:var(--card);border:1px solid var(--line);transition:transform .25s,box-shadow .25s,border-color .25s;cursor:pointer}
+.stat:hover{transform:translateY(-4px);border-color:var(--teal);box-shadow:0 16px 30px -18px rgba(27,52,68,.5)}
+.stat-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px}
+.stat-top i{width:38px;height:38px;display:grid;place-items:center;border-radius:8px;color:var(--ink);background:rgba(165,220,208,.45)}
+.stat-top span{font-size:.72rem;font-weight:600;padding:3px 9px;border-radius:999px;background:rgba(47,174,102,.14);color:#1f8a4f}
+.stat b{display:block;font-family:var(--font-h);font-size:2.4rem;line-height:1}
+.stat small{display:block;margin-top:4px;font-size:.78rem;text-transform:uppercase;letter-spacing:.8px;color:var(--muted)}
+.bar{height:5px;margin-top:12px;border-radius:99px;background:rgba(27,52,68,.09);overflow:hidden}
+.bar i{display:block;height:100%;width:0;border-radius:99px;background:linear-gradient(90deg,var(--ink),var(--acc));transition:width 1.1s var(--ease) .3s}
+
+.grid2>*,.grid3>*{min-width:0}
+.grid2{display:grid;grid-template-columns:1.7fr 1fr;gap:16px;margin-bottom:16px;align-items:start}
+.grid3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;align-items:start}
+.card{padding:22px;margin-bottom:16px;border-radius:12px;background:var(--card);border:1px solid var(--line);min-width:0}
+.grid2 .card,.grid3 .card{margin-bottom:0}
+.card-h{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;flex-wrap:wrap;margin-bottom:16px}
+.card-h h3{font-family:var(--font-h);font-size:1.4rem;text-transform:uppercase;letter-spacing:.5px;line-height:1.1}
+.card-h p{font-size:.8rem;color:var(--muted);margin-top:2px}
+
+.tw{overflow-x:auto}
+table{width:100%;border-collapse:collapse;min-width:620px}
+th{text-align:left;padding:0 10px 10px;font-size:.7rem;text-transform:uppercase;letter-spacing:1px;color:var(--muted);border-bottom:1px solid var(--line)}
+td{padding:13px 10px;border-bottom:1px solid var(--line);font-size:.86rem;vertical-align:middle}
+tr:last-child td{border-bottom:0}
+tbody tr{transition:background .15s;cursor:pointer}
+tbody tr:hover{background:rgba(165,220,208,.22)}
+.t1{font-weight:600}.t2{font-size:.75rem;color:var(--muted);margin-top:2px}
+.tag{display:inline-block;padding:3px 10px;border-radius:999px;font-size:.72rem;font-weight:600;white-space:nowrap}
+.s-submitted{background:rgba(27,52,68,.1);color:var(--ink)}
+.s-scheduled{background:rgba(165,220,208,.5);color:#25675b}
+.s-inprogress{background:rgba(242,182,50,.25);color:#8a6206}
+.s-approval{background:rgba(229,72,77,.12);color:#c2353a}
+.s-completed{background:rgba(47,174,102,.15);color:#1f8a4f}
+.prog{display:flex;align-items:center;gap:8px;min-width:110px}
+.prog .bar{flex:1;margin:0;height:6px}
+.prog span{font-family:var(--font-h);font-size:1rem;color:var(--muted)}
+
+.feed li,.list li{display:flex;gap:12px;align-items:flex-start;padding:12px 6px;border-radius:8px;transition:background .15s;cursor:pointer}
+.feed li:hover,.list li:hover{background:rgba(165,220,208,.22)}
+.feed li>i,.list li>.ico{flex:0 0 auto;width:34px;height:34px;display:grid;place-items:center;border-radius:8px;font-size:.85rem;background:rgba(165,220,208,.45);color:var(--ink)}
+.feed p{font-size:.85rem;line-height:1.45}
+.feed small,.list small{display:block;font-size:.74rem;color:var(--muted);margin-top:2px}
+.list li>div{flex:1;min-width:0}
+.list b{font-size:.88rem}
+.right{margin-left:auto;text-align:right;flex:0 0 auto}
+.amt{font-family:var(--font-h);font-size:1.25rem;font-weight:700}
+.date{flex:0 0 auto;width:46px;text-align:center;padding:5px 0;border-radius:8px;background:var(--ink);color:#fff}
+.date span{display:block;font-size:.62rem;letter-spacing:1px;text-transform:uppercase;color:var(--acc)}
+.date b{font-family:var(--font-h);font-size:1.3rem;line-height:1}
+
+.svc li{padding:8px 0}
+.svc-row{display:flex;justify-content:space-between;font-size:.84rem;margin-bottom:6px}
+.svc-row b{font-family:var(--font-h);font-size:1.05rem}
+
+.cards{display:grid;gap:14px}
+.item{padding:18px;border-radius:12px;border:1px solid var(--line);background:#fff;transition:border-color .2s,transform .2s}
+.item:hover{border-color:var(--teal);transform:translateY(-2px)}
+.item-top{display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap}
+.item-top>div:first-child{flex:1 1 180px;min-width:0}
+.item h4{font-size:.98rem;margin-bottom:4px}
+.item p{font-size:.8rem;color:var(--muted)}
+.item .acts{display:flex;gap:10px;margin-top:14px;flex-wrap:wrap}
+
+.setrow{display:flex;justify-content:space-between;align-items:center;gap:16px;padding:16px 0;border-bottom:1px solid var(--line)}
+.setrow:last-child{border-bottom:0}
+.setrow b{display:block;font-size:.92rem}.setrow small{color:var(--muted);font-size:.8rem}
+.sw{position:relative;width:44px;height:24px;border-radius:99px;background:rgba(27,52,68,.18);transition:background .3s;flex:0 0 auto}
+.sw::after{content:"";position:absolute;top:3px;left:3px;width:18px;height:18px;border-radius:50%;background:#fff;box-shadow:0 1px 4px rgba(0,0,0,.3);transition:transform .3s var(--ease)}
+.sw.on{background:var(--ink)}.sw.on::after{transform:translateX(20px)}
+select{padding:8px 12px;border-radius:8px;border:1.5px solid var(--line);background:#fff;font:inherit;font-size:.88rem}
+.profile{display:flex;align-items:center;gap:18px;flex-wrap:wrap;margin-bottom:18px}
+.profile .av{width:64px;height:64px;font-size:1.9rem;background:var(--ink);color:var(--acc)}
+.profile h4{font-family:var(--font-h);font-size:1.5rem;text-transform:capitalize}
+
+.toast{max-width:calc(100vw - 32px);text-align:center;position:fixed;left:50%;bottom:26px;z-index:100;transform:translate(-50%,20px);padding:12px 20px;border-radius:8px;background:var(--ink);color:#fff;font-size:.86rem;box-shadow:0 14px 30px -10px rgba(0,0,0,.5);opacity:0;pointer-events:none;transition:.3s var(--ease)}
+.toast.show{opacity:1;transform:translate(-50%,0)}
+
+/* ---------- Responsive ---------- */
+@media(max-width:1200px){.grid2{grid-template-columns:1fr}.grid3{grid-template-columns:1fr 1fr}}
+@media(max-width:1024px){
+  .side{transform:translateX(-100%);transition:transform .35s var(--ease)}
+  .side.open{transform:none}
+  .main{margin-left:0}.x,.burger{display:grid;place-items:center}
+  .stats{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media(max-width:720px){
+  .content{padding:18px 16px 44px}.top{padding:10px 14px}
+  .call span,.uname{display:none}.call{padding:9px 11px}.user-btn{padding:3px}
+  .grid3{grid-template-columns:1fr}.hero{padding:22px 20px}.hero h2{font-size:1.9rem}
+  .top h1{font-size:1.5rem}
+}
+@media(max-width:720px){
+  .tw{overflow:visible}
+  table{min-width:0}
+  table,thead,tbody,tr,td{display:block;width:100%}
+  thead{display:none}
+  tbody tr{padding:12px 6px;border-bottom:1px solid var(--line);border-radius:8px}
+  tbody tr:last-child{border-bottom:0}
+  td{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:5px 8px;border:0}
+  td[data-label]::before{content:attr(data-label);flex:0 0 auto;font-size:.68rem;text-transform:uppercase;letter-spacing:1px;color:var(--muted)}
+  td:first-child{display:block;padding-bottom:8px}
+  td .prog{min-width:0;flex:1;max-width:60%}
+  .hero .btn{flex:1 1 auto;justify-content:center}
+  .setrow{flex-wrap:wrap}
+}
+@media(max-width:480px){.stats{grid-template-columns:1fr}.card{padding:16px}.item{padding:14px}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}.rise{opacity:1;transform:none}}
+
+</style>
+</head>
+<body>
+<div class="app">
+  <div class="overlay" id="overlay"></div>
+
+  <aside class="side" id="side">
+    <div class="side-head">
+      <a href="../index.html" class="brand"><img src="../assets/logo1.webp" alt="Stackly Industrial Services"></a>
+      <button class="x" id="closeSide" aria-label="Close menu"><i class="fa-solid fa-xmark"></i></button>
+    </div>
+    <div class="badge-strip"><i></i> Client portal</div>
+
+    <p class="grp">Work</p>
+    <nav class="nav" id="navMain"></nav>
+    <p class="grp">Account</p>
+    <nav class="nav" id="navAcc"></nav>
+
+    <a href="./contact.html#ctForm" class="side-cta"><i class="fa-solid fa-plus"></i> Request a service</a>
+
+    <div class="side-user">
+      <span class="av" id="sAv">?</span>
+      <div><b id="sName">Client</b><small id="sMail">&mdash;</small></div>
+    </div>
+    <button class="logout" id="logoutBtn"><i class="fa-solid fa-right-from-bracket"></i> Logout</button>
+  </aside>
+
+  <main class="main">
+    <header class="top">
+      <button class="burger" id="burger" aria-label="Open menu"><i class="fa-solid fa-bars"></i></button>
+      <h1 id="pageTitle">Dashboard</h1>
+      <div class="top-r">
+        <a href="tel:+914066778899" class="call"><i class="fa-solid fa-phone"></i><span>Emergency line</span></a>
+        <button class="ib" id="bell" aria-label="Notifications"><i class="fa-solid fa-bell"></i><em></em></button>
+        <div class="user" id="user">
+          <button class="user-btn" id="userBtn"><span class="av" id="tAv">?</span><span class="uname" id="tName">Client</span><i class="fa-solid fa-chevron-down"></i></button>
+          <div class="menu">
+            <div class="menu-mail"><small>Signed in as</small><b id="tMail">&mdash;</b></div>
+            <button data-nav="settings"><i class="fa-solid fa-gear"></i> Settings</button>
+            <button class="danger" id="menuLogout"><i class="fa-solid fa-right-from-bracket"></i> Logout</button>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <div class="content" id="content"></div>
+  </main>
+</div>
+<div class="toast" id="toast" role="status"></div>
+<script>
+// STACKLY INDUSTRIAL — user-dashboard.js
+// Client portal: reads the session saved by login.js (localStorage 'user' + 'isAuthenticated').
+(function () {
+  'use strict';
+
+  /* ---------- Session ---------- */
+  function getUser() {
+    try {
+      if (localStorage.getItem('isAuthenticated') !== 'true') return null;
+      var u = JSON.parse(localStorage.getItem('user') || 'null');
+      return u && u.email ? u : null;
+    } catch (e) { return null; }
+  }
+  var user = getUser();
+  if (!user) { location.replace('./login.html'); return; }
+  if (user.role === 'admin') { location.replace('./admin-dashboard.html'); return; }
+
+  var email = user.email, uname = email.split('@')[0], initial = uname.charAt(0).toUpperCase();
+  function logout() {
+    ['user', 'isAuthenticated', 'stacklyNav'].forEach(function (k) { localStorage.removeItem(k); });
+    location.href = './login.html';
+  }
+
+  /* ---------- Helpers ---------- */
+  var $ = function (id) { return document.getElementById(id); };
+  function esc(s) { return String(s).replace(/[&<>"']/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]; }); }
+  function inr(n) { return '\u20B9' + n.toLocaleString('en-IN'); }
+  var toastT;
+  function toast(msg) {
+    var t = $('toast'); t.textContent = msg; t.classList.add('show');
+    clearTimeout(toastT); toastT = setTimeout(function () { t.classList.remove('show'); }, 2200);
+  }
+  function soon() { toast('This feature is coming soon.'); }
+
+  /* ---------- Sample data (replace with API data) ---------- */
+  var SERVICES = { mechanical: 'Mechanical maintenance', welding: 'Welding & fabrication', electrical: 'Electrical & automation', piping: 'Piping & pressure systems', install: 'Plant installation', safety: 'Safety & compliance audit' };
+  var STATUS = { submitted: 'Submitted', scheduled: 'Site visit booked', inprogress: 'In progress', approval: 'Awaiting approval', completed: 'Completed' };
+
+  var requests = [
+    { id: 'SR-1042', title: 'Conveyor gearbox overhaul', svc: 'mechanical', site: 'Salem Plant 1', status: 'inprogress', pct: 65, date: 'Sep 12, 2026', eng: 'R. Kumar' },
+    { id: 'SR-1038', title: 'Boiler feed piping replacement', svc: 'piping', site: 'Salem Plant 2', status: 'inprogress', pct: 30, date: 'Sep 8, 2026', eng: 'S. Venkat' },
+    { id: 'SR-1049', title: 'MCC panel upgrade & PLC retrofit', svc: 'electrical', site: 'Namakkal Unit', status: 'scheduled', pct: 10, date: 'Sep 20, 2026', eng: 'A. Priya' },
+    { id: 'SR-1051', title: 'Annual statutory safety audit', svc: 'safety', site: 'Salem Plant 1', status: 'submitted', pct: 0, date: 'Sep 22, 2026', eng: 'Unassigned' },
+    { id: 'SR-1017', title: 'Structural platform fabrication', svc: 'welding', site: 'Salem Plant 2', status: 'completed', pct: 100, date: 'Aug 14, 2026', eng: 'M. Faizal' }
+  ];
+  var quotes = [
+    { id: 'QT-318', title: 'Cooling tower pump installation', amt: 486000, status: 'approval', valid: 'Oct 05, 2026' },
+    { id: 'QT-311', title: 'Hydraulic press seal & valve kit', amt: 128500, status: 'approval', valid: 'Oct 01, 2026' },
+    { id: 'QT-297', title: 'Boiler feed piping replacement', amt: 742000, status: 'completed', valid: 'Accepted Sep 6' },
+    { id: 'QT-284', title: 'Structural platform fabrication', amt: 315000, status: 'completed', valid: 'Accepted Aug 2' }
+  ];
+  var reports = [
+    { name: 'Pressure vessel inspection report', ref: 'SR-1017', date: 'Aug 20, 2026', size: '2.4 MB' },
+    { name: 'Weld NDT test certificate', ref: 'SR-1017', date: 'Aug 18, 2026', size: '1.1 MB' },
+    { name: 'Gearbox condition assessment', ref: 'SR-1042', date: 'Sep 14, 2026', size: '3.2 MB' },
+    { name: 'Electrical thermography survey', ref: 'SR-0994', date: 'Jul 29, 2026', size: '4.8 MB' }
+  ];
+  var visits = [
+    { d: 'Sep', n: '26', title: 'Site survey: MCC panel upgrade', site: 'Namakkal Unit', eng: 'A. Priya', time: '10:00 AM' },
+    { d: 'Sep', n: '29', title: 'Safety audit walk-through', site: 'Salem Plant 1', eng: 'K. Ramesh', time: '9:30 AM' },
+    { d: 'Oct', n: '03', title: 'Shutdown planning meeting', site: 'Salem Plant 2', eng: 'S. Venkat', time: '2:00 PM' },
+    { d: 'Oct', n: '08', title: 'Post-completion inspection', site: 'Salem Plant 1', eng: 'R. Kumar', time: '11:00 AM' }
+  ];
+  var feed = [
+    { i: 'fa-gears', t: 'Gearbox overhaul on SR-1042 reached 65%: bearings replaced', w: '3h ago' },
+    { i: 'fa-file-invoice', t: 'Quote QT-318 is ready for your approval', w: '1d ago' },
+    { i: 'fa-file-circle-check', t: 'Condition assessment report uploaded for SR-1042', w: '2d ago' },
+    { i: 'fa-calendar-check', t: 'Site survey booked for Sep 26 at Namakkal Unit', w: '3d ago' },
+    { i: 'fa-user-helmet-safety', t: 'Engineer S. Venkat assigned to SR-1038', w: '5d ago' }
+  ];
+
+  var pages = {
+    dashboard: { title: 'Dashboard', icon: 'fa-gauge-high', group: 'main' },
+    requests: { title: 'Service Requests', icon: 'fa-screwdriver-wrench', group: 'main' },
+    quotes: { title: 'Quotes', icon: 'fa-file-invoice', group: 'main' },
+    reports: { title: 'Reports', icon: 'fa-folder-open', group: 'main' },
+    visits: { title: 'Site Visits', icon: 'fa-calendar-days', group: 'main' },
+    settings: { title: 'Settings', icon: 'fa-gear', group: 'acc' }
+  };
+  var settings = { push: true, digest: false, sms: true, lang: 'English' };
+
+  /* ---------- Reusable fragments ---------- */
+  function tag(s) { return '<span class="tag s-' + s + '">' + STATUS[s] + '</span>'; }
+  function bar(p) { return '<div class="bar"><i data-w="' + p + '"></i></div>'; }
+  function statCard(i, icon, val, label, note, pct) {
+    return '<div class="stat rise" style="--i:' + i + '" data-soon><div class="stat-top"><i class="fa-solid ' + icon + '"></i><span>' + note + '</span></div><b data-count="' + val + '">0</b><small>' + label + '</small>' + bar(pct) + '</div>';
+  }
+  function reqRows(list) {
+    return list.map(function (r) {
+      return '<tr data-soon><td><div class="t1">' + esc(r.title) + '</div><div class="t2">' + r.id + ' \u00B7 ' + esc(r.site) + '</div></td><td data-label="Service">' + SERVICES[r.svc] + '</td><td data-label="Status">' + tag(r.status) +
+        '</td><td data-label="Progress"><div class="prog">' + bar(r.pct) + '<span>' + r.pct + '%</span></div></td><td data-label="Engineer">' + esc(r.eng) + '</td></tr>';
+    }).join('');
+  }
+  var reqHead = '<thead><tr><th>Job</th><th>Service</th><th>Status</th><th>Progress</th><th>Engineer</th></tr></thead>';
+
+  /* ---------- Pages ---------- */
+  function pageDashboard() {
+    var active = requests.filter(function (r) { return r.status === 'inprogress' || r.status === 'scheduled'; }).length;
+    var awaiting = quotes.filter(function (q) { return q.status === 'approval'; }).length;
+    var done = requests.filter(function (r) { return r.status === 'completed'; }).length;
+
+    var counts = {};
+    requests.forEach(function (r) { counts[r.svc] = (counts[r.svc] || 0) + 1; });
+    var svc = Object.keys(counts).map(function (k) {
+      var p = Math.round(counts[k] / requests.length * 100);
+      return '<li><div class="svc-row"><span>' + SERVICES[k] + '</span><b>' + counts[k] + '</b></div>' + bar(p) + '</li>';
+    }).join('');
+
+    return '<div class="hero rise"><div><div class="eyebrow">Welcome back</div><h2>Hello, ' + esc(uname) + '</h2><p>Track every job, approve quotes and download reports. Need something new or an emergency call-out?</p></div>' +
+      '<div style="display:flex;gap:10px;flex-wrap:wrap"><a class="btn amb" href="./contact.html#ctForm"><i class="fa-solid fa-plus"></i> New request</a><a class="btn ghost" style="color:#fff;border-color:rgba(255,255,255,.4)" href="tel:+914066778899"><i class="fa-solid fa-phone"></i> Call us</a></div></div>' +
+      '<section class="stats">' +
+        statCard(1, 'fa-screwdriver-wrench', active, 'Active jobs', requests.length + ' total', 60) +
+        statCard(2, 'fa-file-signature', awaiting, 'Quotes to approve', 'Action needed', 45) +
+        statCard(3, 'fa-calendar-check', visits.length, 'Upcoming visits', 'Next: ' + visits[0].d + ' ' + visits[0].n, 70) +
+        statCard(4, 'fa-circle-check', done, 'Completed this year', 'On record', 30) +
+      '</section>' +
+      '<section class="grid2"><div class="card rise" style="--i:5"><div class="card-h"><div><h3>Active jobs</h3><p>Live progress on your current work</p></div><button class="btn ghost sm" data-nav="requests">View all</button></div><div class="tw"><table>' + reqHead + '<tbody>' + reqRows(requests.slice(0, 4)) + '</tbody></table></div></div>' +
+      '<div class="card rise" style="--i:6"><div class="card-h"><div><h3>Recent activity</h3><p>Updates on your account</p></div></div><ul class="feed">' +
+        feed.map(function (f) { return '<li data-soon><i class="fa-solid ' + f.i + '"></i><div><p>' + f.t + '</p><small>' + f.w + '</small></div></li>'; }).join('') + '</ul></div></section>' +
+      '<section class="grid3">' +
+        '<div class="card rise" style="--i:7"><div class="card-h"><div><h3>Quotes</h3><p>Waiting on you</p></div></div><ul class="list">' +
+          quotes.filter(function (q) { return q.status === 'approval'; }).map(function (q) { return '<li data-nav="quotes"><span class="ico"><i class="fa-solid fa-file-invoice"></i></span><div><b>' + esc(q.title) + '</b><small>' + q.id + ' \u00B7 valid till ' + q.valid + '</small></div><div class="right amt">' + inr(q.amt) + '</div></li>'; }).join('') + '</ul></div>' +
+        '<div class="card rise" style="--i:8"><div class="card-h"><div><h3>Upcoming visits</h3><p>Site surveys & meetings</p></div></div><ul class="list">' +
+          visits.slice(0, 3).map(function (v) { return '<li data-nav="visits"><div class="date"><span>' + v.d + '</span><b>' + v.n + '</b></div><div><b>' + esc(v.title) + '</b><small>' + esc(v.site) + ' \u00B7 ' + v.time + '</small></div></li>'; }).join('') + '</ul></div>' +
+        '<div class="card rise" style="--i:9"><div class="card-h"><div><h3>Jobs by service</h3><p>Across all requests</p></div></div><ul class="svc">' + svc + '</ul></div>' +
+      '</section>';
+  }
+
+  function pageRequests() {
+    var by = function (s) { return requests.filter(function (r) { return r.status === s; }).length; };
+    return '<section class="stats">' +
+      statCard(1, 'fa-list-check', requests.length, 'Total requests', 'All time', 100) +
+      statCard(2, 'fa-gears', by('inprogress'), 'In progress', 'On site', 55) +
+      statCard(3, 'fa-calendar-check', by('scheduled') + by('submitted'), 'Awaiting start', 'Planned', 35) +
+      statCard(4, 'fa-circle-check', by('completed'), 'Completed', 'Closed out', 25) + '</section>' +
+      '<div class="card rise" style="--i:5"><div class="card-h"><div><h3>Service requests</h3><p>Every job, from submission to handover</p></div><a class="btn sm" href="./contact.html#ctForm"><i class="fa-solid fa-plus"></i> New request</a></div><div class="tw"><table>' + reqHead + '<tbody>' + reqRows(requests) + '</tbody></table></div></div>';
+  }
+
+  function pageQuotes() {
+    var pending = quotes.filter(function (q) { return q.status === 'approval'; });
+    var total = pending.reduce(function (a, q) { return a + q.amt; }, 0);
+    var cards = quotes.map(function (q, i) {
+      var open = q.status === 'approval';
+      return '<div class="item rise" style="--i:' + (i + 3) + '"><div class="item-top"><div><h4>' + esc(q.title) + '</h4><p>' + q.id + ' \u00B7 ' + (open ? 'Valid till ' + q.valid : q.valid) + '</p></div><div style="text-align:right"><div class="amt">' + inr(q.amt) + '</div>' +
+        (open ? '<span class="tag s-approval">Awaiting approval</span>' : '<span class="tag s-completed">Accepted</span>') + '</div></div><div class="acts">' +
+        (open ? '<button class="btn sm" data-soon>Approve quote</button><button class="btn ghost sm" data-soon>Request changes</button>' : '') +
+        '<button class="btn ghost sm" data-soon><i class="fa-solid fa-download"></i> Download PDF</button></div></div>';
+    }).join('');
+    return '<section class="stats">' +
+      statCard(1, 'fa-file-invoice', quotes.length, 'Total quotes', 'All time', 100) +
+      statCard(2, 'fa-file-signature', pending.length, 'Awaiting approval', 'Action needed', 60) +
+      statCard(3, 'fa-indian-rupee-sign', Math.round(total / 1000), 'Pending value (\u20B9 thousand)', 'Open quotes', 50) +
+      statCard(4, 'fa-circle-check', quotes.length - pending.length, 'Accepted', 'Converted to jobs', 40) + '</section>' +
+      '<div class="card rise" style="--i:2"><div class="card-h"><div><h3>Quotes</h3><p>Fixed-price quotes after site visit</p></div></div><div class="cards">' + cards + '</div></div>';
+  }
+
+  function pageReports() {
+    return '<div class="card rise"><div class="card-h"><div><h3>Reports &amp; certificates</h3><p>Inspection, test and compliance documents for your plant</p></div></div><div class="cards">' +
+      reports.map(function (r, i) {
+        return '<div class="item rise" style="--i:' + (i + 1) + '"><div class="item-top"><div><h4><i class="fa-solid fa-file-pdf" style="color:var(--bad)"></i> ' + esc(r.name) + '</h4><p>' + r.ref + ' \u00B7 ' + r.date + ' \u00B7 PDF \u00B7 ' + r.size + '</p></div><div class="acts" style="margin:0"><button class="btn sm" data-soon><i class="fa-solid fa-download"></i> Download</button><button class="btn ghost sm" data-soon>Preview</button></div></div></div>';
+      }).join('') + '</div></div>';
+  }
+
+  function pageVisits() {
+    return '<div class="card rise"><div class="card-h"><div><h3>Site visits</h3><p>Scheduled surveys, audits and meetings</p></div><a class="btn sm" href="./contact.html#ctForm"><i class="fa-solid fa-plus"></i> Book a visit</a></div><ul class="list">' +
+      visits.map(function (v) {
+        return '<li data-soon><div class="date"><span>' + v.d + '</span><b>' + v.n + '</b></div><div><b>' + esc(v.title) + '</b><small>' + esc(v.site) + ' \u00B7 ' + v.time + ' \u00B7 Engineer: ' + esc(v.eng) + '</small></div><span class="tag s-scheduled right">Confirmed</span></li>';
+      }).join('') + '</ul></div>';
+  }
+
+  function toggleRow(key, title, sub) {
+    return '<div class="setrow"><div><b>' + title + '</b><small>' + sub + '</small></div><button class="sw' + (settings[key] ? ' on' : '') + '" data-toggle="' + key + '" role="switch" aria-checked="' + settings[key] + '" aria-label="' + title + '"></button></div>';
+  }
+  function pageSettings() {
+    return '<div class="card rise"><div class="card-h"><div><h3>Account</h3><p>Profile and session</p></div></div><div class="profile"><span class="av">' + esc(initial) + '</span><div><h4>' + esc(uname) + '</h4><small style="color:var(--muted)">' + esc(email) + '</small></div></div><button class="btn ghost sm" data-soon>Edit profile</button></div>' +
+      '<div class="card rise" style="--i:1"><div class="card-h"><div><h3>Preferences</h3><p>Notifications and display</p></div></div>' +
+        toggleRow('push', 'Job status alerts', 'Notify me when a job or quote changes') +
+        toggleRow('digest', 'Weekly summary email', 'A Monday recap of open jobs and quotes') +
+        toggleRow('sms', 'SMS for site visits', 'Reminders before an engineer arrives') +
+        '<div class="setrow"><div><b>Language</b><small>Interface language</small></div><select id="lang">' + ['English', 'Tamil', 'Hindi', 'Telugu'].map(function (l) { return '<option' + (l === settings.lang ? ' selected' : '') + '>' + l + '</option>'; }).join('') + '</select></div></div>' +
+      '<div class="card rise" style="--i:2"><div class="card-h"><div><h3>Session</h3><p>Signed in as ' + esc(email) + '</p></div></div><div style="display:flex;gap:10px;flex-wrap:wrap"><button class="btn ghost sm" data-soon>Change password</button><button class="btn sm" id="setLogout" style="background:var(--bad);border-color:var(--bad)"><i class="fa-solid fa-right-from-bracket"></i> Logout</button></div></div>';
+  }
+
+  var renderers = { dashboard: pageDashboard, requests: pageRequests, quotes: pageQuotes, reports: pageReports, visits: pageVisits, settings: pageSettings };
+
+  /* ---------- Shell ---------- */
+  var active = localStorage.getItem('stacklyNav');
+  if (!pages[active]) active = 'dashboard';
+
+  function renderNav() {
+    ['main', 'acc'].forEach(function (g) {
+      $(g === 'main' ? 'navMain' : 'navAcc').innerHTML = Object.keys(pages).filter(function (k) { return pages[k].group === g; }).map(function (k) {
+        var n = k === 'quotes' ? '<span class="n">' + quotes.filter(function (q) { return q.status === 'approval'; }).length + '</span>' : '';
+        return '<button data-nav="' + k + '" class="' + (k === active ? 'on' : '') + '"><i class="fa-solid ' + pages[k].icon + '"></i>' + pages[k].title + n + '</button>';
+      }).join('');
+    });
+  }
+
+  function countUp() {
+    [].forEach.call(document.querySelectorAll('[data-count]'), function (el) {
+      var end = +el.getAttribute('data-count'), t0 = null;
+      (function step(t) {
+        if (!t0) t0 = t;
+        var p = Math.min((t - t0) / 900, 1);
+        el.textContent = Math.round(end * (1 - Math.pow(1 - p, 3)));
+        if (p < 1) requestAnimationFrame(step);
+      })(performance.now());
+    });
+  }
+
+  function render() {
+    $('pageTitle').textContent = pages[active].title;
+    $('content').innerHTML = renderers[active]();
+    renderNav();
+    scrollTo(0, 0);
+    requestAnimationFrame(function () {
+      [].forEach.call(document.querySelectorAll('.bar i[data-w]'), function (el) { el.style.width = el.getAttribute('data-w') + '%'; });
+    });
+    countUp();
+    var sl = $('setLogout'); if (sl) sl.addEventListener('click', logout);
+  }
+
+  function go(id) {
+    active = id; localStorage.setItem('stacklyNav', id);
+    closeSide(); $('user').classList.remove('open'); render();
+  }
+  function openSide() { $('side').classList.add('open'); $('overlay').classList.add('show'); }
+  function closeSide() { $('side').classList.remove('open'); $('overlay').classList.remove('show'); }
+
+  /* ---------- Chrome ---------- */
+  ['sName', 'tName'].forEach(function (id) { $(id).textContent = uname; });
+  ['sMail', 'tMail'].forEach(function (id) { $(id).textContent = email; });
+  ['sAv', 'tAv'].forEach(function (id) { $(id).textContent = initial; });
+
+  /* ---------- Events (delegated) ---------- */
+  $('burger').addEventListener('click', openSide);
+  $('closeSide').addEventListener('click', closeSide);
+  $('overlay').addEventListener('click', closeSide);
+  $('logoutBtn').addEventListener('click', logout);
+  $('menuLogout').addEventListener('click', logout);
+  $('bell').addEventListener('click', function () { toast('You have 2 new updates: quote QT-318 and job SR-1042.'); });
+  $('userBtn').addEventListener('click', function (e) { e.stopPropagation(); $('user').classList.toggle('open'); });
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape') { closeSide(); $('user').classList.remove('open'); } });
+
+  document.addEventListener('click', function (e) {
+    $('user').classList.remove('open');
+    var nav = e.target.closest('[data-nav]');
+    if (nav) { go(nav.getAttribute('data-nav')); return; }
+    var sw = e.target.closest('[data-toggle]');
+    if (sw) {
+      var k = sw.getAttribute('data-toggle');
+      settings[k] = !settings[k];
+      sw.classList.toggle('on', settings[k]);
+      sw.setAttribute('aria-checked', settings[k]);
+      return;
+    }
+    if (e.target.closest('[data-soon]')) soon();
+  });
+  document.addEventListener('change', function (e) {
+    if (e.target.id === 'lang') { settings.lang = e.target.value; toast('Language preference saved.'); }
+  });
+
+  render();
+})();
+
+</script>
+</body>
+</html>

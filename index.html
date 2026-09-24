@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="theme-color" content="#111315">
+  <title>Stackly Industrial Services | Maintenance, Fabrication &amp; Installation</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="./css/styles.css">
+</head>
+<body class="loading">
+
+  <div id="preloader">
+    <div class="pl-box">
+      <img src="./assets/logo1.webp" alt="Stackly Industrial Services" class="pl-logo">
+      <div class="pl-count"><span id="plNum">0</span>%</div>
+      <div class="pl-bar"><span id="plBar"></span></div>
+      <p>Starting up the plant</p>
+    </div>
+  </div>
+
+  <header>
+    <div class="hdr">
+      <a href="#hero" class="brand"><img src="./assets/logo1.webp" alt="Stackly Industrial Services" class="logo-img"></a>
+      <nav id="nav" class="nav">
+        <a href="./index.html">Home</a>
+        <a href="./html/services.html">Services</a>
+        <a href="./html/process.html">Process</a>
+        <a href="./html/whyus.html">Why Us</a>
+        <a href="./html/about.html">About</a>
+        <a href="./html/contact.html">Contact</a>
+        <a href="./html/login.html" class="nav-cta">Login</a>
+      </nav>
+      <button class="menu-toggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="nav"><i class="fa-solid fa-bars"></i></button>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section id="hero" class="hero on-ink">
+    <div class="hero-in">
+      <div>
+        <h1>We keep heavy industry <em>running.</em></h1>
+        <p>Preventive maintenance, precision fabrication and turnkey installation for factories, refineries and warehouses. Certified crews, on site within 24 hours.</p>
+        <div class="btns">
+          <a href="#contact" class="btn btn-amb"><i class="fa-solid fa-clipboard-check"></i> Request a quote</a>
+          <a href="#services" class="btn btn-line">See our services</a>
+        </div>
+        <div class="hero-stats">
+          <div><b data-count="15" data-suf="+">15+</b><span>years in operation</span></div>
+          <div><b data-count="1200" data-suf="+">1,200+</b><span>projects delivered</span></div>
+          <div><b data-count="24" data-suf="/7">24/7</b><span>breakdown response</span></div>
+        </div>
+      </div>
+      <div class="gear-wrap" aria-hidden="true">
+        <svg class="gear gear-a" viewBox="0 0 240 240"><circle cx="120" cy="120" r="92" class="teeth"/><circle cx="120" cy="120" r="80" class="body"/><circle cx="120" cy="120" r="30" class="hub"/></svg>
+        <svg class="gear gear-b" viewBox="0 0 120 120"><circle cx="60" cy="60" r="44" class="teeth t2"/><circle cx="60" cy="60" r="38" class="body"/><circle cx="60" cy="60" r="14" class="hub"/></svg>
+        <div class="gear-tag">Zero-downtime<br>shutdown planning</div>
+      </div>
+    </div>
+  </section>
+
+  <div class="hazard"></div>
+
+  <div class="ticker on-ink" aria-hidden="true">
+    <div class="ticker-track">
+      <span>Mechanical maintenance</span><span>Welding &amp; fabrication</span><span>Electrical &amp; automation</span><span>Piping &amp; pressure systems</span><span>Plant installation</span><span>Safety audits</span>
+      <span>Mechanical maintenance</span><span>Welding &amp; fabrication</span><span>Electrical &amp; automation</span><span>Piping &amp; pressure systems</span><span>Plant installation</span><span>Safety audits</span>
+    </div>
+  </div>
+
+  <!-- SERVICES -->
+  <section id="services" class="sec on-amb">
+    <div class="head rv"><h2>What we do on your shop floor</h2><p>Six disciplines, one accountable contractor.</p></div>
+    <div class="grid g3">
+      <article id="svc-mechanical" class="card rv"><img class="card-img" src="./assets/i1.webp" alt="Technician servicing an industrial gearbox" loading="lazy" onerror="this.onerror=null;this.classList.add('ill');this.src='./assets/svc-mechanical.svg'"><i class="fa-solid fa-gears"></i><h3>Mechanical maintenance</h3><p>Scheduled servicing, alignment and overhaul of pumps, compressors, gearboxes and conveyors.</p></article>
+      <article id="svc-welding" class="card rv"><img class="card-img" src="./assets/i2.webp" alt="Welder fabricating a steel structure" loading="lazy" onerror="this.onerror=null;this.classList.add('ill');this.src='./assets/svc-welding.svg'"><i class="fa-solid fa-fire-flame-curved"></i><h3>Welding &amp; fabrication</h3><p>Code-certified structural, pressure-vessel and custom steel fabrication built to your drawings.</p></article>
+      <article id="svc-electrical" class="card rv"><img class="card-img" src="./assets/i3.webp" alt="Engineer working on an industrial control panel" loading="lazy" onerror="this.onerror=null;this.classList.add('ill');this.src='./assets/svc-electrical.svg'"><i class="fa-solid fa-bolt"></i><h3>Electrical &amp; automation</h3><p>Panels, motor control, PLC and SCADA upgrades, tested and commissioned by licensed engineers.</p></article>
+      <article id="svc-piping" class="card rv"><img class="card-img" src="./assets/i4.webp" alt="Industrial pipework at a process plant" loading="lazy" onerror="this.onerror=null;this.classList.add('ill');this.src='./assets/svc-piping.svg'"><i class="fa-solid fa-faucet-drip"></i><h3>Piping &amp; pressure systems</h3><p>Design, erection, hydro-testing and leak repair for process, steam and compressed-air lines.</p></article>
+      <article id="svc-installation" class="card rv"><img class="card-img" src="./assets/i5.webp" alt="Crane lifting machinery into a factory" loading="lazy" onerror="this.onerror=null;this.classList.add('ill');this.src='./assets/svc-installation.svg'"><i class="fa-solid fa-industry"></i><h3>Plant installation</h3><p>Machinery relocation, foundation work and full line installation, delivered on a fixed schedule.</p></article>
+      <article id="svc-safety" class="card rv"><img class="card-img" src="./assets/i6.webp" alt="Inspector auditing a plant floor in safety gear" loading="lazy" onerror="this.onerror=null;this.classList.add('ill');this.src='./assets/svc-safety.svg'"><i class="fa-solid fa-helmet-safety"></i><h3>Safety &amp; compliance audits</h3><p>Site inspections, risk assessments and documentation that keep you inspection-ready.</p></article>
+    </div>
+  </section>
+
+  <!-- PROCESS -->
+  <section id="process" class="sec on-ink">
+    <div class="head rv"><h2>From first call to handover</h2><p>A clear four-step process, so you always know what happens next.</p></div>
+    <div class="grid g4 steps">
+      <div class="step rv"><span>1</span><h3>Assess</h3><p>Engineers walk the site, log equipment condition and agree the scope with you.</p></div>
+      <div class="step rv"><span>2</span><h3>Plan</h3><p>You receive a fixed quote, a method statement and a work schedule built around your production.</p></div>
+      <div class="step rv"><span>3</span><h3>Execute</h3><p>Certified crews deliver the work with daily progress reports and a permit-to-work system.</p></div>
+      <div class="step rv"><span>4</span><h3>Support</h3><p>Handover with test records, spares advice and a service contract if you want one.</p></div>
+    </div>
+  </section>
+
+  <!-- WHY US -->
+  <section id="why" class="sec on-amb">
+    <div class="head rv"><h2>Why plant managers call us back</h2><p>Built for uptime, safety and paperwork that passes audit.</p></div>
+    <div class="grid g2 why">
+      <div class="why-item rv"><i class="fa-solid fa-certificate"></i><div><h3>Certified workforce</h3><p>Every welder, electrician and rigger holds current trade certification, checked before mobilisation.</p></div></div>
+      <div class="why-item rv"><i class="fa-solid fa-clock"></i><div><h3>24-hour mobilisation</h3><p>Emergency crews and stocked service vehicles reach most sites within a day.</p></div></div>
+      <div class="why-item rv"><i class="fa-solid fa-shield-halved"></i><div><h3>Safety-first record</h3><p>Lost-time incidents are tracked and reviewed weekly. Our crews work to your site rules and ours.</p></div></div>
+      <div class="why-item rv"><i class="fa-solid fa-file-signature"></i><div><h3>Full documentation</h3><p>Test certificates, weld maps and as-built drawings are handed over with every job.</p></div></div>
+    </div>
+  </section>
+
+  <!-- INDUSTRIES -->
+  <section id="industries" class="sec on-ink">
+    <div class="head rv"><h2>Industries we work in</h2><p>Site rules differ. Our crews are trained for each one.</p></div>
+    <div class="grid g4">
+      <article class="card rv"><i class="fa-solid fa-industry"></i><h3>Manufacturing</h3><p>Line maintenance, machine relocation and retrofits with minimal stoppage.</p></article>
+      <article class="card rv"><i class="fa-solid fa-plug-circle-bolt"></i><h3>Power &amp; energy</h3><p>Boiler, turbine and switchgear support, including planned outage work.</p></article>
+      <article class="card rv"><i class="fa-solid fa-wheat-awn"></i><h3>Food processing</h3><p>Hygienic stainless fabrication and piping built for washdown environments.</p></article>
+      <article class="card rv"><i class="fa-solid fa-warehouse"></i><h3>Logistics &amp; warehousing</h3><p>Racking, conveyors and dock equipment installed, serviced and certified.</p></article>
+    </div>
+  </section>
+
+  <div class="hazard"></div>
+
+  <!-- ABOUT -->
+  <section id="about" class="sec on-ink">
+    <div class="about">
+      <div class="rv">
+        <h2>A plant-floor company, run by engineers</h2>
+        <p class="lead">Stackly Industrial Services was founded in 2011 by mechanical and electrical engineers who were tired of contractors that arrived late and left without records.</p>
+        <p>Today we support manufacturing, power, food processing and logistics sites across South India, from single-machine repairs to multi-week shutdown turnarounds.</p>
+      </div>
+      <div class="stat-panel rv">
+        <div><b data-count="1200" data-suf="+">1,200+</b><span>projects delivered</span></div>
+        <div><b data-count="85" data-suf="+">85+</b><span>industrial clients</span></div>
+        <div><b data-count="98" data-suf="%">98%</b><span>jobs finished on schedule</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section id="contact" class="sec on-amb cta">
+    <div class="rv">
+      <h2>Machine down or shutdown coming up?</h2>
+      <p>Tell us what you need. An engineer will call you back the same working day.</p>
+      <div class="btns">
+        <a href="./html/404.html" class="btn btn-ink"><i class="fa-solid fa-phone"></i> +91 40 6677 8899</a>
+        <a href="./html/404.html" class="btn btn-line-ink">Email an engineer</a>
+      </div>
+    </div>
+  </section>
+
+  <footer class="on-ink">
+    <div class="foot">
+      <div>
+        <a href="#hero" class="brand"><img src="./assets/logo1.webp" alt="Stackly Industrial Services" class="logo-img"></a>
+        <p>Maintenance, fabrication and installation for industrial plants.</p>
+      </div>
+      <div>
+        <h4>Services</h4>
+        <ul><li><a href="./html/404.html">Mechanical</a></li><li><a href="./html/404.html">Fabrication</a></li><li><a href="./html/404.html">Electrical</a></li><li><a href="./html/404.html">Safety audits</a></li></ul>
+      </div>
+      <div>
+        <h4>Company</h4>
+        <ul><li><a href="./index.html">home</a></li><li><a href="./html/services.html">Services</a></li><li><a href="./html/process.html">Process</a></li><li><a href="./html/whyus.html">Why Us</a></li><li><a href="./html/about.html">About</a></li><li><a href="./html/contact.html">Contact</a></li><li>
+      </div>
+      <div>
+        <h4>Visit us</h4>
+        <address>MMR Complex, Periyakollappatty<br>Chinna Thirupathi, Salem,<br>Tamil Nadu 636008<br>Open Mon–Sat, 8:00 AM – 6:00 PM</address>
+        <p><a href="./html/404.html">+91 40 6677 8899</a><br><a href="./html/404.html">support@stackly.com</a></p>
+      </div>
+    </div>
+    <p class="copy">&copy; 2026 Stackly Industrial Services. All rights reserved.</p>
+  </footer>
+
+  <script src="./js/script.js"></script>
+</body>
+</html>

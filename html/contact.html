@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="theme-color" content="#1B3444">
+  <title>Contact | Stackly Industrial Services</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="../css/styles.css">
+  <link rel="stylesheet" href="../css/contact.css">
+</head>
+<body>
+
+  <header>
+    <div class="hdr">
+      <a href="../index.html" class="brand"><img src="../assets/logo1.webp" alt="Stackly Industrial Services" class="logo-img"></a>
+      <nav id="nav" class="nav">
+        <a href="../index.html">Home</a>
+        <a href="./services.html">Services</a>
+        <a href="./process.html">Process</a>
+        <a href="./whyus.html">Why Us</a>
+        <a href="./about.html">About</a>
+        <a href="./contact.html" aria-current="page">Contact</a>
+        <a href="./404.html" class="nav-cta">Login</a>
+      </nav>
+      <button class="menu-toggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="nav"><i class="fa-solid fa-bars"></i></button>
+    </div>
+  </header>
+
+  <section class="ct-hero on-ink">
+    <div class="ct-hero-in">
+      <nav class="crumbs" aria-label="Breadcrumb"><a href="../index.html">Home</a><span aria-hidden="true">/</span><span>Contact</span></nav>
+      <h1><span class="ln"><span>Tell us about</span></span><span class="ln"><span>the job.</span></span></h1>
+      <p>An engineer calls back the same working day. For an active breakdown, call us directly &mdash; don't wait on the form.</p>
+    </div>
+  </section>
+
+  <section class="ct-main on-amb">
+    <div class="ct-main-in">
+
+      <div class="ct-info">
+        <h2>Get in touch</h2>
+        <p class="ct-info-lead">Site visits, fixed quotes and emergency call-outs across Tamil Nadu's industrial belt.</p>
+
+        <ul class="ct-list">
+          <li><i class="fa-solid fa-location-dot"></i><span>MMR Complex, Periyakollappatty<br>Chinna Thirupathi, Salem, Tamil Nadu 636008</span></li>
+          <li><i class="fa-solid fa-phone"></i><span><a href="tel:+914066778899">+91 40 6677 8899</a></span></li>
+          <li><i class="fa-solid fa-envelope"></i><span><a href="mailto:support@stackly.com">support@stackly.com</a></span></li>
+          <li><i class="fa-solid fa-clock"></i><span>Mon&ndash;Sat, 8:00 AM &ndash; 6:00 PM<br>Emergency call-outs 24/7</span></li>
+        </ul>
+
+        <div class="ct-emergency">
+          <i class="fa-solid fa-triangle-exclamation"></i>
+          <div><b>Line down right now?</b><p>Call us directly &mdash; average 24h response on breakdowns.</p></div>
+        </div>
+
+        <div class="ct-next">
+          <h3>What happens next</h3>
+          <ol>
+            <li><b>We review</b><span>An engineer reads your request the same working day.</span></li>
+            <li><b>We call you</b><span>A short call to confirm scope, site access and timing.</span></li>
+            <li><b>Site visit &amp; fixed quote</b><span>Written quote with scope, timeline and safety plan.</span></li>
+          </ol>
+        </div>
+      </div>
+
+      <form class="ct-form" id="ctForm" novalidate autocomplete="on">
+        <h2>Request a quote</h2>
+        <p class="ct-form-lead">Fields marked * are required. The more detail you share, the more accurate our quote.</p>
+
+        <!-- honeypot: hidden from real users, catches basic bots -->
+        <div class="hp"><label for="website">Leave this field empty</label><input type="text" id="website" name="website" tabindex="-1" autocomplete="off"></div>
+
+        <div class="row">
+          <div class="field">
+            <input type="text" id="name" name="name" required maxlength="60" placeholder=" " autocomplete="name" inputmode="text" spellcheck="false">
+            <label for="name">Full name *</label>
+            <small class="hint">Letters only, e.g. Ravi Kumar</small>
+            <small class="err"></small>
+          </div>
+          <div class="field">
+            <input type="text" id="company" name="company" maxlength="80" placeholder=" " autocomplete="organization">
+            <label for="company">Company <em>(optional)</em></label>
+            <small class="err"></small>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="field">
+            <input type="email" id="email" name="email" required maxlength="100" placeholder=" " autocomplete="email" inputmode="email">
+            <label for="email">Work email *</label>
+            <small class="hint">We'll send your quote here</small>
+            <small class="err"></small>
+          </div>
+          <div class="field">
+            <input type="tel" id="phone" name="phone" required maxlength="18" placeholder=" " autocomplete="tel" inputmode="tel">
+            <label for="phone">Phone number *</label>
+            <small class="hint">10-digit mobile, +91 optional</small>
+            <small class="err"></small>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="field">
+            <select id="service" name="service" required>
+              <option value="" disabled selected hidden> </option>
+              <option>Mechanical maintenance</option>
+              <option>Welding &amp; fabrication</option>
+              <option>Electrical &amp; automation</option>
+              <option>Piping &amp; pressure systems</option>
+              <option>Plant installation</option>
+              <option>Safety &amp; compliance audit</option>
+              <option>Not sure / other</option>
+            </select>
+            <label for="service" class="lb-select">Service needed *</label>
+            <small class="err"></small>
+          </div>
+          <div class="field">
+            <select id="urgency" name="urgency">
+              <option value="Planned" selected>Planned work</option>
+              <option value="This week">Needed this week</option>
+              <option value="Emergency">Emergency / breakdown</option>
+            </select>
+            <label for="urgency" class="lb-select">Timeline</label>
+          </div>
+        </div>
+
+        <div class="ct-alert" id="urgAlert" hidden>
+          <i class="fa-solid fa-triangle-exclamation"></i>
+          <div><b>Active breakdown?</b> Don't wait on the form &mdash; <a href="tel:+914066778899">call +91 40 6677 8899</a> now.</div>
+        </div>
+
+        <div class="field">
+          <textarea id="message" name="message" required maxlength="1000" rows="5" placeholder=" "></textarea>
+          <label for="message">What needs doing? *</label>
+          <small class="err"></small>
+          <span class="cnt"><span id="msgCount">0</span>/1000</span>
+        </div>
+
+        <div class="chips" aria-label="Add useful details">
+          <span>Quick add:</span>
+          <button type="button" class="chip" data-add="Site location: ">+ Site location</button>
+          <button type="button" class="chip" data-add="Equipment / model: ">+ Equipment</button>
+          <button type="button" class="chip" data-add="Preferred start date: ">+ Start date</button>
+          <button type="button" class="chip" data-add="Approx. scale / quantity: ">+ Scale</button>
+        </div>
+
+        <label class="consent">
+          <input type="checkbox" id="consent" name="consent" required>
+          <span>I agree to be contacted about this enquiry. *</span>
+          <small class="err"></small>
+        </label>
+
+        <button type="submit" class="btn btn-ink" id="ctSubmit">
+          <span class="lbl"><i class="fa-solid fa-paper-plane"></i> Send message</span>
+          <span class="spin" aria-hidden="true"></span>
+        </button>
+
+        <p class="ct-trust"><i class="fa-solid fa-lock"></i> Your details are used only to respond to this enquiry and are never shared.</p>
+
+        <div class="ct-ok" id="ctOk" role="status" hidden>
+          <i class="fa-solid fa-circle-check"></i>
+          <div><b>Message sent.</b><p>An engineer will call you back the same working day.</p></div>
+        </div>
+      </form>
+
+    </div>
+  </section>
+
+  <!-- Section 1: Commitments -->
+  <section class="ct-sec ct-commit on-ink" id="commitments">
+    <div class="sec-in">
+      <div class="sec-head">
+        <h2>What you can count on</h2>
+        <p>Clear promises on response, pricing and safety &mdash; before any work starts.</p>
+      </div>
+      <div class="ct-stats">
+        <div class="stat"><i class="fa-solid fa-phone-volume"></i><b>Same day</b><span>Engineer callback on every working-day enquiry</span></div>
+        <div class="stat"><i class="fa-solid fa-truck-fast"></i><b>24 hours</b><span>Average response on breakdowns</span></div>
+        <div class="stat"><i class="fa-solid fa-file-invoice"></i><b>Fixed quotes</b><span>Written scope and price after a site visit</span></div>
+        <div class="stat"><i class="fa-solid fa-helmet-safety"></i><b>Safety first</b><span>Method statement and permits agreed before work</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 2: FAQ -->
+  <section class="ct-sec ct-faq on-amb" id="faq">
+    <div class="sec-in">
+      <div class="sec-head">
+        <h2>Frequently asked questions</h2>
+        <p>Quick answers before you get in touch.</p>
+      </div>
+      <div class="faq">
+        <details>
+          <summary>How quickly will someone respond to my enquiry?</summary>
+          <p>An engineer calls back the same working day (Mon&ndash;Sat, 8:00 AM &ndash; 6:00 PM). For an active breakdown, call us directly instead of using the form.</p>
+        </details>
+        <details>
+          <summary>Do you provide a fixed quote?</summary>
+          <p>Yes. After a short call and a site visit we send a written quote covering scope, timeline and safety arrangements, so there are no surprises.</p>
+        </details>
+        <details>
+          <summary>What should I include in my request?</summary>
+          <p>The service you need, your site location, the equipment or system involved, and when you want work to start. The quick-add buttons under the message box help you cover these.</p>
+        </details>
+        <details>
+          <summary>Do you handle emergency call-outs?</summary>
+          <p>Emergency call-outs are available 24/7. Call <a href="tel:+914066778899">+91 40 6677 8899</a> and we will dispatch as soon as possible.</p>
+        </details>
+        <details>
+          <summary>Can you work while the plant is running?</summary>
+          <p>It depends on the job and the safety risk. We plan work around your shutdown windows where needed and confirm this during the site visit.</p>
+        </details>
+        <details>
+          <summary>Is my information kept private?</summary>
+          <p>Your details are used only to respond to your enquiry and are never shared with third parties.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 3: Service areas -->
+  <section class="ct-sec ct-areas on-ink" id="areas">
+    <div class="sec-in">
+      <div class="sec-head">
+        <h2>Where we work</h2>
+        <p>Based in Salem, serving industrial plants across Tamil Nadu.</p>
+      </div>
+      <ul class="areas">
+        <li><i class="fa-solid fa-location-dot"></i>Salem</li>
+        <li><i class="fa-solid fa-location-dot"></i>Namakkal</li>
+        <li><i class="fa-solid fa-location-dot"></i>Erode</li>
+        <li><i class="fa-solid fa-location-dot"></i>Karur</li>
+        <li><i class="fa-solid fa-location-dot"></i>Coimbatore</li>
+        <li><i class="fa-solid fa-location-dot"></i>Tiruppur</li>
+        <li><i class="fa-solid fa-location-dot"></i>Hosur</li>
+        <li><i class="fa-solid fa-location-dot"></i>Dharmapuri</li>
+      </ul>
+      <p class="areas-note">Don't see your town? <a href="#ctForm">Send us the location</a> &mdash; we'll confirm coverage on the call.</p>
+    </div>
+  </section>
+
+  <section class="ct-map on-amb">
+    <div class="head"><h2>Find us on site</h2><p>MMR Complex, Periyakollappatty, Chinna Thirupathi, Salem, Tamil Nadu 636008.</p></div>
+    <div class="map-frame">
+      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3907.1616097152896!2d78.1739798!3d11.682956599999999!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3babefef7fd970bb%3A0xe11aef1a71994f9!2sStackly!5e0!3m2!1sen!2sin!4v1790235390427!5m2!1sen!2sin" title="Stackly Industrial Services location" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+    </div>
+  </section>
+
+  <footer class="on-ink">
+    <div class="foot">
+      <div>
+        <a href="../index.html" class="brand"><img src="../assets/logo1.webp" alt="Stackly Industrial Services" class="logo-img"></a>
+        <p>Maintenance, fabrication and installation for industrial plants.</p>
+      </div>
+      <div>
+        <h4>Services</h4>
+        <ul><li><a href="./services.html#mechanical">Mechanical</a></li><li><a href="./services.html#welding">Fabrication</a></li><li><a href="./services.html#electrical">Electrical</a></li><li><a href="./services.html#safety">Safety audits</a></li></ul>
+      </div>
+      <div>
+        <h4>Company</h4>
+        <ul><li><a href="../index.html">Home</a></li><li><a href="./services.html">Services</a></li><li><a href="./process.html">Process</a></li><li><a href="./whyus.html">Why Us</a></li><li><a href="./about.html">About</a></li><li><a href="./contact.html">Contact</a></li></ul>
+      </div>
+      <div>
+        <h4>Visit us</h4>
+        <address>MMR Complex, Periyakollappatty<br>Chinna Thirupathi, Salem,<br>Tamil Nadu 636008<br>Open Mon–Sat, 8:00 AM – 6:00 PM</address>
+        <p><a href="tel:+914066778899">+91 40 6677 8899</a><br><a href="mailto:support@stackly.com">support@stackly.com</a></p>
+      </div>
+    </div>
+    <p class="copy">&copy; 2026 Stackly Industrial Services. All rights reserved.</p>
+  </footer>
+
+  <script src="../js/contact.js"></script>
+</body>
+</html>
