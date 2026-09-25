@@ -19,7 +19,8 @@
   --ease:cubic-bezier(.2,.8,.2,1); --sw:264px;
 }
 *{box-sizing:border-box;margin:0;padding:0}
-html,body{max-width:100%;overflow-x:hidden}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+html,body{max-width:100%;overflow-x:clip;overflow-y:visible}
 img{max-width:100%}
 .card,.item,.list li,.feed li,.hero,.stat{overflow-wrap:anywhere}
 body{font-family:var(--font-b);background:var(--bg);color:var(--ink);-webkit-font-smoothing:antialiased}
@@ -58,7 +59,20 @@ ul{list-style:none}
 
 /* ---------- Topbar ---------- */
 .main{flex:1;min-width:0;margin-left:var(--sw)}
-.top{position:sticky;top:0;z-index:30;display:flex;align-items:center;gap:14px;padding:12px 28px;min-height:64px;background:rgba(238,243,244,.9);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.top{
+  position:-webkit-sticky;
+  position:sticky;
+  top:env(safe-area-inset-top,0px);
+  z-index:30;
+  display:flex;align-items:center;gap:14px;
+  padding:calc(12px + env(safe-area-inset-top,0px)) 28px 12px;
+  min-height:64px;
+  background:rgba(238,243,244,.9);
+  -webkit-backdrop-filter:blur(10px);
+  backdrop-filter:blur(10px);
+  border-bottom:1px solid var(--line);
+  will-change:transform;
+}
 .top h1{min-width:0;overflow:hidden;text-overflow:ellipsis;font-family:var(--font-h);font-size:1.9rem;text-transform:uppercase;letter-spacing:.5px;font-weight:700;white-space:nowrap}
 .burger{display:none;width:38px;height:38px;border-radius:8px;background:#fff;border:1px solid var(--line)}
 .top-r{margin-left:auto;display:flex;align-items:center;gap:10px}
@@ -187,7 +201,7 @@ select{padding:8px 12px;border-radius:8px;border:1.5px solid var(--line);backgro
   .stats{grid-template-columns:repeat(2,minmax(0,1fr))}
 }
 @media(max-width:720px){
-  .content{padding:18px 16px 44px}.top{padding:10px 14px}
+  .content{padding:18px 16px 44px}.top{padding:calc(10px + env(safe-area-inset-top,0px)) 14px 10px}
   .call span,.uname{display:none}.call{padding:9px 11px}.user-btn{padding:3px}
   .grid3{grid-template-columns:1fr}.hero{padding:22px 20px}.hero h2{font-size:1.9rem}
   .top h1{font-size:1.5rem}
@@ -227,7 +241,7 @@ select{padding:8px 12px;border-radius:8px;border:1.5px solid var(--line);backgro
     <p class="grp">Account</p>
     <nav class="nav" id="navAcc"></nav>
 
-    <a href="./contact.html#ctForm" class="side-cta"><i class="fa-solid fa-plus"></i> Request a service</a>
+    <a href="./404.html" class="side-cta"><i class="fa-solid fa-plus"></i> Request a service</a>
 
     <div class="side-user">
       <span class="av" id="sAv">?</span>
@@ -241,7 +255,7 @@ select{padding:8px 12px;border-radius:8px;border:1.5px solid var(--line);backgro
       <button class="burger" id="burger" aria-label="Open menu"><i class="fa-solid fa-bars"></i></button>
       <h1 id="pageTitle">Dashboard</h1>
       <div class="top-r">
-        <a href="tel:+914066778899" class="call"><i class="fa-solid fa-phone"></i><span>Emergency line</span></a>
+        <a href="./404.html" class="call"><i class="fa-solid fa-phone"></i><span>Emergency line</span></a>
         <button class="ib" id="bell" aria-label="Notifications"><i class="fa-solid fa-bell"></i><em></em></button>
         <div class="user" id="user">
           <button class="user-btn" id="userBtn"><span class="av" id="tAv">?</span><span class="uname" id="tName">Client</span><i class="fa-solid fa-chevron-down"></i></button>
@@ -291,7 +305,6 @@ select{padding:8px 12px;border-radius:8px;border:1.5px solid var(--line);backgro
     var t = $('toast'); t.textContent = msg; t.classList.add('show');
     clearTimeout(toastT); toastT = setTimeout(function () { t.classList.remove('show'); }, 2200);
   }
-  function soon() { toast('This feature is coming soon.'); }
 
   /* ---------- Sample data (replace with API data) ---------- */
   var SERVICES = { mechanical: 'Mechanical maintenance', welding: 'Welding & fabrication', electrical: 'Electrical & automation', piping: 'Piping & pressure systems', install: 'Plant installation', safety: 'Safety & compliance audit' };
@@ -368,7 +381,7 @@ select{padding:8px 12px;border-radius:8px;border:1.5px solid var(--line);backgro
     }).join('');
 
     return '<div class="hero rise"><div><div class="eyebrow">Welcome back</div><h2>Hello, ' + esc(uname) + '</h2><p>Track every job, approve quotes and download reports. Need something new or an emergency call-out?</p></div>' +
-      '<div style="display:flex;gap:10px;flex-wrap:wrap"><a class="btn amb" href="./contact.html#ctForm"><i class="fa-solid fa-plus"></i> New request</a><a class="btn ghost" style="color:#fff;border-color:rgba(255,255,255,.4)" href="tel:+914066778899"><i class="fa-solid fa-phone"></i> Call us</a></div></div>' +
+      '<div style="display:flex;gap:10px;flex-wrap:wrap"><a class="btn amb" href="./404.html"><i class="fa-solid fa-plus"></i> New request</a><a class="btn ghost" style="color:#fff;border-color:rgba(255,255,255,.4)" href="./404.html"><i class="fa-solid fa-phone"></i> Call us</a></div></div>' +
       '<section class="stats">' +
         statCard(1, 'fa-screwdriver-wrench', active, 'Active jobs', requests.length + ' total', 60) +
         statCard(2, 'fa-file-signature', awaiting, 'Quotes to approve', 'Action needed', 45) +
@@ -394,7 +407,7 @@ select{padding:8px 12px;border-radius:8px;border:1.5px solid var(--line);backgro
       statCard(2, 'fa-gears', by('inprogress'), 'In progress', 'On site', 55) +
       statCard(3, 'fa-calendar-check', by('scheduled') + by('submitted'), 'Awaiting start', 'Planned', 35) +
       statCard(4, 'fa-circle-check', by('completed'), 'Completed', 'Closed out', 25) + '</section>' +
-      '<div class="card rise" style="--i:5"><div class="card-h"><div><h3>Service requests</h3><p>Every job, from submission to handover</p></div><a class="btn sm" href="./contact.html#ctForm"><i class="fa-solid fa-plus"></i> New request</a></div><div class="tw"><table>' + reqHead + '<tbody>' + reqRows(requests) + '</tbody></table></div></div>';
+      '<div class="card rise" style="--i:5"><div class="card-h"><div><h3>Service requests</h3><p>Every job, from submission to handover</p></div><a class="btn sm" href="./404.html"><i class="fa-solid fa-plus"></i> New request</a></div><div class="tw"><table>' + reqHead + '<tbody>' + reqRows(requests) + '</tbody></table></div></div>';
   }
 
   function pageQuotes() {
@@ -515,7 +528,7 @@ select{padding:8px 12px;border-radius:8px;border:1.5px solid var(--line);backgro
       sw.setAttribute('aria-checked', settings[k]);
       return;
     }
-    if (e.target.closest('[data-soon]')) soon();
+    if (e.target.closest('[data-soon]')) { location.href = './404.html'; return; }
   });
   document.addEventListener('change', function (e) {
     if (e.target.id === 'lang') { settings.lang = e.target.value; toast('Language preference saved.'); }

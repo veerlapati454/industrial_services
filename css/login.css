@@ -90,6 +90,11 @@ button{font:inherit}
 .field:focus-within .lead{opacity:1;color:var(--ink)}
 .eye{position:absolute;right:6px;top:8px;width:38px;height:38px;border:0;background:none;color:inherit;opacity:.5;cursor:pointer;border-radius:6px;transition:opacity .2s}
 .eye:hover{opacity:1}
+
+/* Hide the browser's built-in password reveal icon (Edge/IE) so only our custom .eye button shows */
+input[type="password"]::-ms-reveal,
+input[type="password"]::-ms-clear{display:none;width:0;height:0}
+
 .hint{display:block;margin-top:6px;font-size:.78rem;opacity:.6}
 .caps{display:block;margin-top:6px;font-size:.78rem;color:#b9770e}
 .caps[hidden]{display:none}

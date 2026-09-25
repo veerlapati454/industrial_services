@@ -19,7 +19,8 @@
   --ease:cubic-bezier(.2,.8,.2,1); --sw:264px;
 }
 *{box-sizing:border-box;margin:0;padding:0}
-html,body{max-width:100%;overflow-x:hidden}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+html,body{max-width:100%;overflow-x:clip;overflow-y:visible}
 img{max-width:100%}
 .card,.item,.list li,.feed li,.hero,.stat{overflow-wrap:anywhere}
 body{font-family:var(--font-b);background:var(--bg);color:var(--ink);-webkit-font-smoothing:antialiased}
@@ -58,7 +59,20 @@ ul{list-style:none}
 
 /* ---------- Topbar ---------- */
 .main{flex:1;min-width:0;margin-left:var(--sw)}
-.top{position:sticky;top:0;z-index:30;display:flex;align-items:center;gap:14px;padding:12px 28px;min-height:64px;background:rgba(238,243,244,.9);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.top{
+  position:-webkit-sticky;
+  position:sticky;
+  top:env(safe-area-inset-top,0px);
+  z-index:30;
+  display:flex;align-items:center;gap:14px;
+  padding:calc(12px + env(safe-area-inset-top,0px)) 28px 12px;
+  min-height:64px;
+  background:rgba(238,243,244,.9);
+  -webkit-backdrop-filter:blur(10px);
+  backdrop-filter:blur(10px);
+  border-bottom:1px solid var(--line);
+  will-change:transform;
+}
 .top h1{min-width:0;overflow:hidden;text-overflow:ellipsis;font-family:var(--font-h);font-size:1.9rem;text-transform:uppercase;letter-spacing:.5px;font-weight:700;white-space:nowrap}
 .burger{display:none;width:38px;height:38px;border-radius:8px;background:#fff;border:1px solid var(--line)}
 .top-r{margin-left:auto;display:flex;align-items:center;gap:10px}
@@ -187,7 +201,7 @@ select{padding:8px 12px;border-radius:8px;border:1.5px solid var(--line);backgro
   .stats{grid-template-columns:repeat(2,minmax(0,1fr))}
 }
 @media(max-width:720px){
-  .content{padding:18px 16px 44px}.top{padding:10px 14px}
+  .content{padding:18px 16px 44px}.top{padding:calc(10px + env(safe-area-inset-top,0px)) 14px 10px}
   .call span,.uname{display:none}.call{padding:9px 11px}.user-btn{padding:3px}
   .grid3{grid-template-columns:1fr}.hero{padding:22px 20px}.hero h2{font-size:1.9rem}
   .top h1{font-size:1.5rem}
@@ -393,7 +407,7 @@ td select{max-width:100%;padding:6px 8px;font-size:.82rem}
 
   function enqCard(e, i) {
     return '<div class="item rise" style="--i:' + (i + 1) + '"><div class="item-top"><div><h4>' + esc(e.company) + ' ' + tag(URG[e.urg], e.urg) + '</h4><p>' + esc(e.name) + ' \u00B7 ' + esc(e.phone) + ' \u00B7 ' + e.when + '</p><p class="msg">' + SERVICES[e.svc] + ': ' + esc(e.msg) + '</p></div></div>' +
-      '<div class="acts"><button class="btn sm" data-convert="' + e.id + '"><i class="fa-solid fa-circle-plus"></i> Convert to request</button><a class="btn ghost sm" href="tel:' + e.phone.replace(/\s/g, '') + '"><i class="fa-solid fa-phone"></i> Call</a><button class="btn ghost sm" data-dismiss="' + e.id + '">Dismiss</button></div></div>';
+      '<div class="acts"><button class="btn sm" data-404><i class="fa-solid fa-circle-plus"></i> Convert to request</button><a class="btn ghost sm" href="tel:' + e.phone.replace(/\s/g, '') + '"><i class="fa-solid fa-phone"></i> Call</a><button class="btn ghost sm" data-404>Dismiss</button></div></div>';
   }
 
   /* ---------- Pages ---------- */
@@ -402,7 +416,7 @@ td select{max-width:100%;padding:6px 8px;font-size:.82rem}
     var pipeline = o.reduce(function (a, r) { return a + r.amt; }, 0);
     var onsite = engineers.filter(function (e) { return e.status === 'onsite'; }).length;
 
-    var alertHtml = emerg.length ? '<div class="alert rise"><i class="fa-solid fa-triangle-exclamation"></i><div><b>' + emerg.length + ' emergency enquiry waiting</b><div class="t2">' + esc(emerg[0].company) + ' \u00B7 ' + esc(emerg[0].when) + '</div></div><button class="btn sm" data-nav="enquiries">Review now</button></div>' : '';
+    var alertHtml = emerg.length ? '<div class="alert rise"><i class="fa-solid fa-triangle-exclamation"></i><div><b>' + emerg.length + ' emergency enquiry waiting</b><div class="t2">' + esc(emerg[0].company) + ' \u00B7 ' + esc(emerg[0].when) + '</div></div><button class="btn sm" data-404>Review now</button></div>' : '';
 
     var byStatus = Object.keys(STATUS).map(function (k) {
       var n = requests.filter(function (r) { return r.status === k; }).length;
@@ -415,18 +429,18 @@ td select{max-width:100%;padding:6px 8px;font-size:.82rem}
 
     return alertHtml +
       '<div class="hero rise"><div><div class="eyebrow">Admin console</div><h2>Good to see you, ' + esc(uname) + '</h2><p>Triage new enquiries, assign engineers and keep every job moving from one place.</p></div>' +
-      '<div style="display:flex;gap:10px;flex-wrap:wrap"><button class="btn amb" data-nav="enquiries"><i class="fa-solid fa-inbox"></i> Enquiries</button><button class="btn ghost" style="color:#fff;border-color:rgba(255,255,255,.4)" data-nav="requests">All requests</button></div></div>' +
+      '<div style="display:flex;gap:10px;flex-wrap:wrap"><button class="btn amb" data-404><i class="fa-solid fa-inbox"></i> Enquiries</button><button class="btn ghost" style="color:#fff;border-color:rgba(255,255,255,.4)" data-404>All requests</button></div></div>' +
       '<section class="stats">' +
         stat(1, 'fa-screwdriver-wrench', o.length, 'Open requests', requests.length + ' total', 65) +
         stat(2, 'fa-inbox', enquiries.length, 'New enquiries', emerg.length + ' urgent', 50) +
         stat(3, 'fa-helmet-safety', onsite, 'Engineers on site', engineers.length + ' on team', Math.round(onsite / engineers.length * 100)) +
         stat(4, 'fa-indian-rupee-sign', Math.round(pipeline / 100000), 'Pipeline value', 'Open jobs', 70, '\u20B9', ' L') +
       '</section>' +
-      '<section class="grid2"><div class="card rise" style="--i:5"><div class="card-h"><div><h3>Recent requests</h3><p>Latest jobs across all clients</p></div><button class="btn ghost sm" data-nav="requests">Manage</button></div><div class="tw"><table>' + reqHead + '<tbody>' + reqRows(requests.slice(0, 5), false) + '</tbody></table></div></div>' +
+      '<section class="grid2"><div class="card rise" style="--i:5"><div class="card-h"><div><h3>Recent requests</h3><p>Latest jobs across all clients</p></div><button class="btn ghost sm" data-404>Manage</button></div><div class="tw"><table>' + reqHead + '<tbody>' + reqRows(requests.slice(0, 5), false) + '</tbody></table></div></div>' +
       '<div class="card rise" style="--i:6"><div class="card-h"><div><h3>New enquiries</h3><p>From the contact form</p></div></div>' +
         (enquiries.length ? '<ul class="list">' + enquiries.slice(0, 3).map(function (e) { return '<li data-nav="enquiries"><span class="ico"><i class="fa-solid fa-envelope-open-text"></i></span><div><b>' + esc(e.company) + '</b><small>' + SERVICES[e.svc] + ' \u00B7 ' + e.when + '</small></div>' + tag(URG[e.urg], e.urg).replace('class="tag', 'class="right tag') + '</li>'; }).join('') + '</ul>' : '<div class="empty"><i class="fa-regular fa-circle-check"></i>Inbox is clear.</div>') + '</div></section>' +
       '<section class="grid3">' +
-        '<div class="card rise" style="--i:7"><div class="card-h"><div><h3>Team today</h3><p>Engineer availability</p></div><button class="btn ghost sm" data-nav="engineers">View</button></div><ul class="list">' +
+        '<div class="card rise" style="--i:7"><div class="card-h"><div><h3>Team today</h3><p>Engineer availability</p></div><button class="btn ghost sm" data-404>View</button></div><ul class="list">' +
           engineers.slice(0, 4).map(function (e) { return '<li data-nav="engineers"><span class="av" style="background:var(--ink);color:var(--acc)">' + e.name.charAt(0) + '</span><div><b>' + e.name + '</b><small>' + e.role + '</small></div>' + tag(e.status, ENG_STATUS[e.status]).replace('class="tag', 'class="right tag') + '</li>'; }).join('') + '</ul></div>' +
         '<div class="card rise" style="--i:8"><div class="card-h"><div><h3>By status</h3><p>Pipeline breakdown</p></div></div><ul class="svc">' + byStatus + '</ul></div>' +
         '<div class="card rise" style="--i:9"><div class="card-h"><div><h3>By service</h3><p>Demand mix</p></div></div><ul class="svc">' + bySvc + '</ul></div>' +
@@ -546,21 +560,12 @@ td select{max-width:100%;padding:6px 8px;font-size:.82rem}
   document.addEventListener('click', function (e) {
     $('user').classList.remove('open');
     var t;
+    if ((t = e.target.closest('[data-404]'))) { location.href = './404.html'; return; }
     if ((t = e.target.closest('[data-nav]'))) { go(t.getAttribute('data-nav')); return; }
     if ((t = e.target.closest('[data-filter]'))) { reqFilter = t.getAttribute('data-filter'); render(true); return; }
     if ((t = e.target.closest('[data-toggle]'))) {
       var k = t.getAttribute('data-toggle'); settings[k] = !settings[k];
       t.classList.toggle('on', settings[k]); t.setAttribute('aria-checked', settings[k]); return;
-    }
-    if ((t = e.target.closest('[data-convert]'))) {
-      var en = byId(enquiries, t.getAttribute('data-convert'));
-      requests.unshift({ id: 'SR-' + (nextId++), title: SERVICES[en.svc] + ' (' + en.company + ')', client: en.company, svc: en.svc, status: 'submitted', eng: 'Unassigned', amt: 0 });
-      enquiries.splice(enquiries.indexOf(en), 1);
-      toast('Converted to request SR-' + (nextId - 1) + '. Assign an engineer next.'); render(true); return;
-    }
-    if ((t = e.target.closest('[data-dismiss]'))) {
-      var d = byId(enquiries, t.getAttribute('data-dismiss'));
-      enquiries.splice(enquiries.indexOf(d), 1); toast('Enquiry dismissed.'); render(true);
     }
   });
 

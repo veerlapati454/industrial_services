@@ -145,6 +145,16 @@ footer{border-top:18px solid transparent;border-image:repeating-linear-gradient(
 .foot h4{font-size:1.5rem;color:#fff;margin-bottom:14px}
 .foot p,.foot li,.foot address{font-size:.92rem;font-style:normal;margin-top:12px}
 .foot li{margin:0 0 10px}.foot a:hover{color:var(--amb)}
+
+/* Footer social icons */
+.social{display:flex;gap:12px;margin-top:18px}
+.social a{
+  width:40px;height:40px;display:grid;place-items:center;
+  background:rgba(255,198,26,.1);border:1px solid rgba(255,198,26,.35);
+  color:var(--amb);font-size:1.05rem;transition:background .25s,color .25s,transform .25s var(--ease);
+}
+.social a:hover{background:var(--amb);color:var(--ink);transform:translateY(-3px)}
+
 .copy{max-width:1280px;margin:0 auto;padding-top:20px;border-top:1px solid rgba(255,255,255,.14);text-align:center;font-size:.85rem;color:rgba(255,255,255,.55)}
 
 /* Reveal: a clean wipe-up, staggered by JS via --d */
@@ -238,4 +248,5 @@ body.nav-open header{backdrop-filter:none;-webkit-backdrop-filter:none;backgroun
   .foot .brand{display:block}
   .foot .logo-img{margin:0 auto}
   .foot address{margin-left:auto;margin-right:auto}
+  .social{justify-content:center}
 }
